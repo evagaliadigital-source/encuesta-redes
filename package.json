@@ -1,0 +1,19 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "curl http://localhost:3000"
+  },
+  "keywords": ["encuesta", "mvp", "galia-digital"],
+  "author": "Eva Rodríguez - Galia Digital",
+  "license": "ISC",
+  "description": "Encuesta MVP validación Agenda Inteligente IA para peluquerías",
+  "dependencies": {
+    "@hono/node-server": "^1.19.6",
+    "hono": "^4.10.4"
+  }
+}
