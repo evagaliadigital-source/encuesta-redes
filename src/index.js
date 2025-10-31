@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { serveStatic } from '@hono/node-server/serve-static'
+import { readFileSync } from 'fs'
 
 const app = new Hono()
 
@@ -1088,6 +1089,12 @@ app.get('/', (c) => {
     </script>
 </body>
 </html>`)
+})
+
+// Dashboard para Eva
+app.get('/dashboard', (c) => {
+  // En producción, aquí pondrías autenticación
+  return c.html(readFileSync('./dashboard.html', 'utf-8'))
 })
 
 export default app

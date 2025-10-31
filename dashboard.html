@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Encuesta MVP - Eva Rodríguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-8">
+        <!-- Header -->
+        <div class="max-w-7xl mx-auto mb-8">
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl shadow-xl p-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-4xl font-bold mb-2">📊 Dashboard Encuesta MVP</h1>
+                        <p class="text-xl opacity-90">Control total de tus leads - Galia Digital</p>
+                    </div>
+                    <button onclick="loadData()" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        🔄 Actualizar Datos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <!-- Total Respuestas -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-600 font-semibold">Total Respuestas</div>
+                    <div class="text-3xl">📋</div>
+                </div>
+                <div class="text-4xl font-bold text-gray-800" id="totalResponses">0</div>
+                <div class="text-sm text-gray-500 mt-2">Encuestas completadas</div>
+            </div>
+
+            <!-- HOT Leads -->
+            <div class="bg-red-50 border-2 border-red-200 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-red-600 font-semibold">🔥 HOT Leads</div>
+                    <div class="text-3xl">🔥</div>
+                </div>
+                <div class="text-4xl font-bold text-red-600" id="hotLeads">0</div>
+                <div class="text-sm text-red-500 mt-2"><span id="hotPercent">0</span>% del total</div>
+            </div>
+
+            <!-- WARM Leads -->
+            <div class="bg-yellow-50 border-2 border-yellow-200 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-yellow-600 font-semibold">🟡 WARM Leads</div>
+                    <div class="text-3xl">🟡</div>
+                </div>
+                <div class="text-4xl font-bold text-yellow-600" id="warmLeads">0</div>
+                <div class="text-sm text-yellow-500 mt-2"><span id="warmPercent">0</span>% del total</div>
+            </div>
+
+            <!-- Participantes Sorteo -->
+            <div class="bg-purple-50 border-2 border-purple-200 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-purple-600 font-semibold">🎁 Sorteo A Coruña</div>
+                    <div class="text-3xl">🎁</div>
+                </div>
+                <div class="text-4xl font-bold text-purple-600" id="raffleParticipants">0</div>
+                <div class="text-sm text-purple-500 mt-2">Participantes inscritos</div>
+            </div>
+        </div>
+
+        <!-- Sorteo Action -->
+        <div class="max-w-7xl mx-auto mb-8">
+            <div class="bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">🎉 Sorteo Agenda Inteligente IA</h3>
+                        <p class="text-gray-600">Sortea al ganador entre todos los participantes de A Coruña</p>
+                    </div>
+                    <button onclick="drawWinner()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition transform hover:scale-105">
+                        🎲 SORTEAR GANADOR
+                    </button>
+                </div>
+                <div id="winnerResult" class="hidden mt-6 p-6 bg-white rounded-lg border-2 border-green-500">
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">🎉</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">¡GANADOR DEL SORTEO!</h3>
+                        <div class="space-y-2 text-lg">
+                            <p><strong>Nombre:</strong> <span id="winnerName"></span></p>
+                            <p><strong>Peluquería:</strong> <span id="winnerBusiness"></span></p>
+                            <p><strong>Número sorteo:</strong> <span class="text-3xl font-bold text-purple-600" id="winnerNumber"></span></p>
+                            <p><strong>Email:</strong> <span id="winnerEmail"></span></p>
+                            <p><strong>WhatsApp:</strong> <span id="winnerWhatsapp"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Willingness to Pay -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">💰 Disposición de Pago</h3>
+                <canvas id="willingnessChart"></canvas>
+            </div>
+
+            <!-- Principal Freno -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">🚧 Principales Frenos</h3>
+                <canvas id="blockersChart"></canvas>
+            </div>
+
+            <!-- Tiempo RRSS -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">⏰ Tiempo en Redes Sociales</h3>
+                <canvas id="socialTimeChart"></canvas>
+            </div>
+
+            <!-- Redes Usadas -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">📱 Redes Sociales Usadas</h3>
+                <canvas id="socialNetworksChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tabla de Respuestas -->
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">📋 Todas las Respuestas</h3>
+                    <button onclick="exportCSV()" class="bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        📥 Exportar CSV
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full" id="responsesTable">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Prioridad</th>
+                                <th class="px-4 py-3 text-left">Nombre</th>
+                                <th class="px-4 py-3 text-left">Peluquería</th>
+                                <th class="px-4 py-3 text-left">Ciudad</th>
+                                <th class="px-4 py-3 text-left">WhatsApp</th>
+                                <th class="px-4 py-3 text-left">Contactar</th>
+                                <th class="px-4 py-3 text-left">WTP</th>
+                                <th class="px-4 py-3 text-left">#Sorteo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="responsesBody">
+                            <tr>
+                                <td colspan="8" class="px-4 py-8 text-center text-gray-500">
+                                    Cargando datos...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+    <script>
+        let allResponses = [];
+        let charts = {};
+
+        // Load data on page load
+        window.addEventListener('DOMContentLoaded', loadData);
+
+        async function loadData() {
+            try {
+                const response = await axios.get('/api/responses');
+                const data = response.data;
+                
+                allResponses = data.responses;
+                
+                // Update stats
+                document.getElementById('totalResponses').textContent = data.total;
+                document.getElementById('hotLeads').textContent = data.hot;
+                document.getElementById('warmLeads').textContent = data.warm;
+                document.getElementById('raffleParticipants').textContent = data.raffleParticipants;
+                
+                // Calculate percentages
+                if (data.total > 0) {
+                    document.getElementById('hotPercent').textContent = Math.round((data.hot / data.total) * 100);
+                    document.getElementById('warmPercent').textContent = Math.round((data.warm / data.total) * 100);
+                }
+                
+                // Update charts
+                updateCharts(data.responses);
+                
+                // Update table
+                updateTable(data.responses);
+                
+            } catch (error) {
+                console.error('Error cargando datos:', error);
+                alert('Error al cargar los datos. Verifica que el servidor esté corriendo.');
+            }
+        }
+
+        function updateCharts(responses) {
+            // Willingness to Pay
+            const wtpData = {};
+            responses.forEach(r => {
+                const wtp = r.p3 || 'Sin respuesta';
+                wtpData[wtp] = (wtpData[wtp] || 0) + 1;
+            });
+            
+            createChart('willingnessChart', 'bar', Object.keys(wtpData), Object.values(wtpData), 'Número de respuestas');
+            
+            // Blockers
+            const blockersData = {};
+            responses.forEach(r => {
+                const blocker = r.p4 || 'Sin respuesta';
+                blockersData[blocker] = (blockersData[blocker] || 0) + 1;
+            });
+            
+            createChart('blockersChart', 'doughnut', Object.keys(blockersData), Object.values(blockersData));
+            
+            // Social Time
+            const socialTimeData = {};
+            responses.forEach(r => {
+                const time = r.p8 || 'Sin respuesta';
+                socialTimeData[time] = (socialTimeData[time] || 0) + 1;
+            });
+            
+            createChart('socialTimeChart', 'bar', Object.keys(socialTimeData), Object.values(socialTimeData), 'Número de respuestas');
+            
+            // Social Networks
+            const networksData = {};
+            responses.forEach(r => {
+                const networks = (r.p7 || '').split(', ');
+                networks.forEach(net => {
+                    if (net.trim()) {
+                        networksData[net.trim()] = (networksData[net.trim()] || 0) + 1;
+                    }
+                });
+            });
+            
+            createChart('socialNetworksChart', 'doughnut', Object.keys(networksData), Object.values(networksData));
+        }
+
+        function createChart(canvasId, type, labels, data, label = '') {
+            const canvas = document.getElementById(canvasId);
+            
+            // Destroy existing chart
+            if (charts[canvasId]) {
+                charts[canvasId].destroy();
+            }
+            
+            const ctx = canvas.getContext('2d');
+            charts[canvasId] = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: [
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(118, 75, 162, 0.8)',
+                            'rgba(237, 100, 166, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: type === 'doughnut'
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateTable(responses) {
+            const tbody = document.getElementById('responsesBody');
+            
+            if (responses.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-8 text-center text-gray-500">No hay respuestas todavía. ¡Comparte la encuesta!</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = responses.map(r => `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-4 py-3">
+                        <span class="px-3 py-1 rounded-full text-sm font-bold ${
+                            r.priority === '🔥 HOT' ? 'bg-red-100 text-red-600' :
+                            r.priority === '🟡 WARM' ? 'bg-yellow-100 text-yellow-600' :
+                            'bg-green-100 text-green-600'
+                        }">
+                            ${r.priority}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3 font-semibold">${r.p10}</td>
+                    <td class="px-4 py-3">${r.p11}</td>
+                    <td class="px-4 py-3">${r.p14}</td>
+                    <td class="px-4 py-3">${r.p12}</td>
+                    <td class="px-4 py-3">${r.p16}</td>
+                    <td class="px-4 py-3 text-sm">${r.p3}</td>
+                    <td class="px-4 py-3 font-bold ${r.raffleNumber ? 'text-purple-600' : 'text-gray-400'}">
+                        ${r.raffleNumber ? '#' + r.raffleNumber : '-'}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function drawWinner() {
+            try {
+                const response = await axios.post('/api/draw-winner');
+                const winner = response.data.winner;
+                
+                // Show winner result
+                document.getElementById('winnerResult').classList.remove('hidden');
+                document.getElementById('winnerName').textContent = winner.name;
+                document.getElementById('winnerBusiness').textContent = winner.business;
+                document.getElementById('winnerNumber').textContent = '#' + winner.raffleNumber;
+                document.getElementById('winnerEmail').textContent = winner.email;
+                document.getElementById('winnerWhatsapp').textContent = winner.whatsapp;
+                
+                // Scroll to result
+                document.getElementById('winnerResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+            } catch (error) {
+                console.error('Error en sorteo:', error);
+                if (error.response && error.response.status === 400) {
+                    alert('No hay participantes en el sorteo todavía. Solo peluquerías de A Coruña pueden participar.');
+                } else {
+                    alert('Error al realizar el sorteo. Intenta de nuevo.');
+                }
+            }
+        }
+
+        function exportCSV() {
+            if (allResponses.length === 0) {
+                alert('No hay datos para exportar');
+                return;
+            }
+            
+            // CSV Headers
+            const headers = [
+                'Timestamp', 'Prioridad', 'Nombre', 'Peluquería', 'Ciudad', 'Dirección',
+                'WhatsApp', 'Email', 'Contactar', 'Tiempo agenda/día', 'Mayor problema',
+                'Willingness to pay', 'Principal freno', 'Probaría gratis', 
+                'Le quita tiempo', 'Redes usa', 'Tiempo RRSS', 'Pagaría contenido IA',
+                'Participa sorteo', 'Número sorteo'
+            ];
+            
+            // CSV Rows
+            const rows = allResponses.map(r => [
+                r.timestamp,
+                r.priority,
+                r.p10, r.p11, r.p14, r.p15 || '',
+                r.p12, r.p13, r.p16,
+                r.p1, r.p2, r.p3, r.p4, r.p5,
+                r.p6, r.p7, r.p8, r.p9,
+                r.participatesInRaffle ? 'SÍ' : 'NO',
+                r.raffleNumber || ''
+            ]);
+            
+            // Build CSV
+            const csv = [
+                headers.join(','),
+                ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+            ].join('\n');
+            
+            // Download
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `encuesta-mvp-${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+    </script>
+</body>
+</html>
