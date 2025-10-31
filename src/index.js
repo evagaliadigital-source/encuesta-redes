@@ -1187,9 +1187,8 @@ app.get('/', (c) => {
                 }
             }
             
-            // Checkboxes (multiple values)
+            // Checkboxes (multiple values) - Solo P6 ahora
             data.p6 = Array.from(document.querySelectorAll('input[name="p6"]:checked')).map(cb => cb.value).join(', ');
-            data.p7 = Array.from(document.querySelectorAll('input[name="p7"]:checked')).map(cb => cb.value).join(', ');
             
             // Timestamp
             data.timestamp = new Date().toISOString();
