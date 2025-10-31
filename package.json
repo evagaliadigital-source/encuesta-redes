@@ -8,12 +8,18 @@
     "dev": "node --watch server.js",
     "test": "curl http://localhost:3000"
   },
-  "keywords": ["encuesta", "mvp", "galia-digital"],
+  "keywords": [
+    "encuesta",
+    "mvp",
+    "galia-digital"
+  ],
   "author": "Eva Rodríguez - Galia Digital",
   "license": "ISC",
   "description": "Encuesta MVP validación Agenda Inteligente IA para peluquerías",
   "dependencies": {
     "@hono/node-server": "^1.19.6",
-    "hono": "^4.10.4"
+    "axios": "^1.13.1",
+    "hono": "^4.10.4",
+    "nodemailer": "^7.0.10"
   }
 }

@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { readFileSync } from 'fs'
+import axios from 'axios'
 
 const app = new Hono()
 
@@ -147,8 +148,24 @@ Respuesta registrada: ${timestamp}
   console.log('📧 EMAIL A EVA:')
   console.log(emailBody)
   
-  // En producción, aquí usarías SendGrid, Mailgun, etc.
-  // Por ahora, solo lo registramos en consola
+  // Enviar email real con Web3Forms
+  try {
+    const response = await axios.post('https://api.web3forms.com/submit', {
+      access_key: '0c3fc71e-891d-42b1-9ed4-6c3adb1d481d',
+      subject: `[LEAD ${priority}] ${data.p12} - ${data.p15}`,
+      from_name: 'Sistema Encuesta MVP - Galia Digital',
+      message: emailBody
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    
+    console.log('✅ Email enviado a Eva correctamente')
+  } catch (error) {
+    console.error('❌ Error enviando email:', error.message)
+  }
+  
   return emailBody
 }
 
