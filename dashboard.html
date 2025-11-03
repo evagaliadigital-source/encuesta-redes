@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Encuesta MVP - Eva Rodríguez</title>
+    <title>Dashboard Encuesta MVP - Eva Rodriguez</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -25,12 +25,12 @@
                              alt="Galia Digital Logo" 
                              class="h-20 md:h-24 object-contain bg-white rounded-lg p-2">
                         <div>
-                            <h1 class="text-3xl md:text-4xl font-bold mb-2">📊 Dashboard Encuesta MVP</h1>
+                            <h1 class="text-3xl md:text-4xl font-bold mb-2">Dashboard Encuesta MVP</h1>
                             <p class="text-lg md:text-xl opacity-90">Control total de tus leads - Galia Digital</p>
                         </div>
                     </div>
                     <button onclick="loadData()" class="bg-white text-[#008080] px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">
-                        🔄 Actualizar Datos
+                        Actualizar Datos
                     </button>
                 </div>
             </div>
@@ -51,7 +51,7 @@
             <!-- HOT Leads -->
             <div class="bg-red-50 border-2 border-red-200 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="text-red-600 font-semibold">🔥 HOT Leads</div>
+                    <div class="text-red-600 font-semibold">HOT Leads</div>
                     <div class="text-3xl">🔥</div>
                 </div>
                 <div class="text-4xl font-bold text-red-600" id="hotLeads">0</div>
@@ -61,7 +61,7 @@
             <!-- WARM Leads -->
             <div class="bg-yellow-50 border-2 border-yellow-200 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="text-yellow-600 font-semibold">🟡 WARM Leads</div>
+                    <div class="text-yellow-600 font-semibold">WARM Leads</div>
                     <div class="text-3xl">🟡</div>
                 </div>
                 <div class="text-4xl font-bold text-yellow-600" id="warmLeads">0</div>
@@ -71,7 +71,7 @@
             <!-- Participantes Sorteo -->
             <div class="bg-[#E6F2F2] border-2 border-[#008080] rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="text-[#008080] font-semibold">🎁 Sorteo A Coruña</div>
+                    <div class="text-[#008080] font-semibold">Sorteo 8 Dic</div>
                     <div class="text-3xl">🎁</div>
                 </div>
                 <div class="text-4xl font-bold text-[#008080]" id="raffleParticipants">0</div>
@@ -79,21 +79,21 @@
             </div>
         </div>
 
-        <!-- Filtros y Búsqueda -->
+        <!-- Filtros y Busqueda -->
         <div class="max-w-7xl mx-auto mb-8">
             <div class="bg-white rounded-xl shadow-lg p-6">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <!-- Búsqueda -->
+                    <!-- Busqueda -->
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">🔍 Buscar</label>
-                        <input type="text" id="searchInput" placeholder="Nombre, peluquería, ciudad..." 
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Buscar</label>
+                        <input type="text" id="searchInput" placeholder="Nombre, peluqueria, ciudad..." 
                                class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none"
                                onkeyup="filterTable()">
                     </div>
                     
                     <!-- Filtro por Prioridad -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">🎯 Prioridad</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Prioridad</label>
                         <select id="priorityFilter" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none" onchange="filterTable()">
                             <option value="">Todas</option>
                             <option value="🔥 HOT">🔥 HOT</option>
@@ -104,7 +104,7 @@
                     
                     <!-- Filtro por Sorteo -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">🎁 Sorteo</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Sorteo</label>
                         <select id="raffleFilter" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none" onchange="filterTable()">
                             <option value="">Todos</option>
                             <option value="si">Solo participantes</option>
@@ -117,28 +117,28 @@
 
         <!-- Charts -->
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <!-- Willingness to Pay -->
+            <!-- Precio que Pagarian -->
             <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">💰 Disposición de Pago</h3>
-                <canvas id="willingnessChart"></canvas>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Precio Dispuesto a Pagar</h3>
+                <canvas id="priceChart"></canvas>
             </div>
 
             <!-- Principal Freno -->
             <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">🚧 Principales Frenos</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Principales Frenos</h3>
                 <canvas id="blockersChart"></canvas>
             </div>
 
-            <!-- Tiempo RRSS -->
+            <!-- Tiempo Gestion Agenda -->
             <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">⏰ Tiempo en Redes Sociales</h3>
-                <canvas id="socialTimeChart"></canvas>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Tiempo Gestion Agenda</h3>
+                <canvas id="timeChart"></canvas>
             </div>
 
-            <!-- Redes Usadas -->
+            <!-- Problemas Negocio -->
             <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">📱 Redes Sociales Usadas</h3>
-                <canvas id="socialNetworksChart"></canvas>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Problemas del Negocio</h3>
+                <canvas id="problemsChart"></canvas>
             </div>
         </div>
 
@@ -147,32 +147,31 @@
             <div class="bg-white rounded-xl shadow-lg p-8">
                 <div class="flex items-center justify-between mb-6">
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-800">📋 Todas las Respuestas</h3>
+                        <h3 class="text-2xl font-bold text-gray-800">Todas las Respuestas</h3>
                         <p class="text-sm text-gray-500 mt-1">Mostrando <span id="filteredCount">0</span> de <span id="totalCount">0</span> respuestas</p>
                     </div>
                     <button onclick="exportCSV()" class="bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">
-                        📥 Exportar CSV
+                        Exportar CSV
                     </button>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full" id="responsesTable">
                         <thead class="bg-gray-100">
                             <tr>
-                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('priority')">Prioridad ↕️</th>
-                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('name')">Nombre ↕️</th>
-                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('business')">Peluquería ↕️</th>
-                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('city')">Ciudad ↕️</th>
+                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('priority')">Prioridad</th>
+                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('name')">Nombre</th>
+                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('business')">Peluqueria</th>
+                                <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('city')">Ciudad</th>
                                 <th class="px-4 py-3 text-left">WhatsApp</th>
                                 <th class="px-4 py-3 text-left">Email</th>
-                                <th class="px-4 py-3 text-left">Contactar</th>
-                                <th class="px-4 py-3 text-left">WTP</th>
+                                <th class="px-4 py-3 text-left">Precio</th>
                                 <th class="px-4 py-3 text-left">#Sorteo</th>
                                 <th class="px-4 py-3 text-left">Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="responsesBody">
                             <tr>
-                                <td colspan="10" class="px-4 py-8 text-center text-gray-500">
+                                <td colspan="9" class="px-4 py-8 text-center text-gray-500">
                                     Cargando datos...
                                 </td>
                             </tr>
@@ -182,29 +181,24 @@
             </div>
         </div>
 
-        <!-- Sorteo Section (moved to end) -->
+        <!-- Sorteo Section -->
         <div class="max-w-7xl mx-auto mb-8">
             <div class="bg-gradient-to-r from-[#E6F2F2] to-[#F5F2FB] border-2 border-[#B3D9D9] rounded-xl shadow-lg p-8">
                 <div class="text-center mb-6">
                     <div class="text-5xl mb-3">🎁</div>
                     <h3 class="text-3xl font-bold text-gray-800 mb-2">Sorteo Agenda Inteligente IA</h3>
                     <p class="text-gray-600">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
-                    <p class="text-sm text-gray-500 mt-2">📅 Fecha sorteo: 24 noviembre 2025</p>
-                    <p class="text-xs text-gray-500 mt-2">
-                        <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">
-                            📋 Ver bases legales del sorteo
-                        </a>
-                    </p>
+                    <p class="text-sm text-gray-500 mt-2">Fecha sorteo: 8 diciembre 2025</p>
                 </div>
                 
                 <div class="bg-white rounded-lg p-6 mb-6">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                         <div>
                             <p class="text-3xl font-bold text-[#008080]" id="raffleParticipants2">0</p>
-                            <p class="text-sm text-gray-600">Participantes de A Coruña</p>
+                            <p class="text-sm text-gray-600">Participantes</p>
                         </div>
                         <div>
-                            <p class="text-3xl font-bold text-gray-800">24 Nov</p>
+                            <p class="text-3xl font-bold text-gray-800">8 Dic</p>
                             <p class="text-sm text-gray-600">Fecha del sorteo</p>
                         </div>
                         <div>
@@ -217,9 +211,8 @@
                 <div class="text-center">
                     <button onclick="drawWinner()" 
                             class="bg-gradient-to-r from-[#008080] to-[#1b285e] text-white px-12 py-4 rounded-lg font-bold text-xl hover:shadow-xl transition transform hover:scale-105">
-                        🎲 SORTEAR GANADOR AHORA
+                        SORTEAR GANADOR AHORA
                     </button>
-                    <p class="text-xs text-gray-500 mt-3">Solo participan peluquerías de A Coruña</p>
                 </div>
             </div>
         </div>
@@ -238,14 +231,12 @@
 
         async function loadData() {
             try {
-                console.log('🔄 Cargando datos desde /api/responses...');
+                console.log('Cargando datos desde /api/responses...');
                 const response = await axios.get('/api/responses');
-                console.log('✅ Respuesta recibida:', response);
                 const data = response.data;
-                console.log('📊 Data parseada:', data);
                 
                 allResponses = data.responses;
-                console.log('📋 Total respuestas:', allResponses.length);
+                console.log('Total respuestas:', allResponses.length);
                 
                 // Update stats
                 document.getElementById('totalResponses').textContent = data.total;
@@ -267,52 +258,51 @@
                 updateTable(data.responses);
                 
             } catch (error) {
-                console.error('❌ Error cargando datos:', error);
-                console.error('❌ Detalles del error:', error.message, error.response);
-                alert('Error al cargar los datos. Verifica que el servidor esté corriendo.');
+                console.error('Error cargando datos:', error);
+                alert('Error al cargar los datos. Verifica que el servidor este corriendo.');
             }
         }
 
         function updateCharts(responses) {
-            // Willingness to Pay
-            const wtpData = {};
+            // Precio que pagarian (p18_precio)
+            const priceData = {};
             responses.forEach(r => {
-                const wtp = r.p3 || 'Sin respuesta';
-                wtpData[wtp] = (wtpData[wtp] || 0) + 1;
+                const price = r.p18_precio || 'Sin respuesta';
+                priceData[price] = (priceData[price] || 0) + 1;
             });
             
-            createChart('willingnessChart', 'bar', Object.keys(wtpData), Object.values(wtpData), 'Número de respuestas');
+            createChart('priceChart', 'bar', Object.keys(priceData), Object.values(priceData), 'Numero de respuestas');
             
-            // Blockers
+            // Blockers (p3)
             const blockersData = {};
             responses.forEach(r => {
-                const blocker = r.p4 || 'Sin respuesta';
+                const blocker = r.p3 || 'Sin respuesta';
                 blockersData[blocker] = (blockersData[blocker] || 0) + 1;
             });
             
             createChart('blockersChart', 'doughnut', Object.keys(blockersData), Object.values(blockersData));
             
-            // Social Time
-            const socialTimeData = {};
+            // Tiempo gestion agenda (p1)
+            const timeData = {};
             responses.forEach(r => {
-                const time = r.p8 || 'Sin respuesta';
-                socialTimeData[time] = (socialTimeData[time] || 0) + 1;
+                const time = r.p1 || 'Sin respuesta';
+                timeData[time] = (timeData[time] || 0) + 1;
             });
             
-            createChart('socialTimeChart', 'bar', Object.keys(socialTimeData), Object.values(socialTimeData), 'Número de respuestas');
+            createChart('timeChart', 'bar', Object.keys(timeData), Object.values(timeData), 'Numero de respuestas');
             
-            // Social Networks
-            const networksData = {};
+            // Problemas negocio (p5)
+            const problemsData = {};
             responses.forEach(r => {
-                const networks = (r.p7 || '').split(', ');
-                networks.forEach(net => {
-                    if (net.trim()) {
-                        networksData[net.trim()] = (networksData[net.trim()] || 0) + 1;
+                const problems = (r.p5 || '').split(', ');
+                problems.forEach(prob => {
+                    if (prob.trim()) {
+                        problemsData[prob.trim()] = (problemsData[prob.trim()] || 0) + 1;
                     }
                 });
             });
             
-            createChart('socialNetworksChart', 'doughnut', Object.keys(networksData), Object.values(networksData));
+            createChart('problemsChart', 'doughnut', Object.keys(problemsData), Object.values(problemsData));
         }
 
         function createChart(canvasId, type, labels, data, label = '') {
@@ -332,12 +322,12 @@
                         label: label,
                         data: data,
                         backgroundColor: [
+                            'rgba(0, 128, 128, 0.8)',
+                            'rgba(27, 40, 94, 0.8)',
                             'rgba(155, 141, 198, 0.8)',
                             'rgba(184, 165, 214, 0.8)',
                             'rgba(212, 205, 235, 0.8)',
-                            'rgba(243, 240, 249, 0.8)',
-                            'rgba(155, 141, 198, 0.6)',
-                            'rgba(184, 165, 214, 0.6)'
+                            'rgba(243, 240, 249, 0.8)'
                         ],
                         borderWidth: 2,
                         borderColor: '#fff'
@@ -361,12 +351,12 @@
             document.getElementById('filteredCount').textContent = responses.length;
             
             if (responses.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="10" class="px-4 py-8 text-center text-gray-500">No hay respuestas con estos filtros.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="9" class="px-4 py-8 text-center text-gray-500">No hay respuestas con estos filtros.</td></tr>';
                 return;
             }
             
             tbody.innerHTML = responses.map((r, index) => `
-                <tr class="border-b hover:bg-gray-50" data-priority="${r.priority}" data-name="${r.p10}" data-business="${r.p11}" data-city="${r.p14}" data-raffle="${r.participatesInRaffle ? 'si' : 'no'}">
+                <tr class="border-b hover:bg-gray-50" data-priority="${r.priority}" data-name="${r.p10}" data-business="${r.p11}" data-city="${r.p14}" data-raffle="${r.wantRaffle ? 'si' : 'no'}">
                     <td class="px-4 py-3">
                         <span class="px-3 py-1 rounded-full text-sm font-bold ${
                             r.priority === '🔥 HOT' ? 'bg-red-100 text-red-600' :
@@ -389,23 +379,14 @@
                             ${r.p13}
                         </a>
                     </td>
-                    <td class="px-4 py-3">${r.p16}</td>
-                    <td class="px-4 py-3 text-sm">${r.p3}</td>
+                    <td class="px-4 py-3 text-sm">${r.p18_precio || 'N/A'}</td>
                     <td class="px-4 py-3 font-bold ${r.raffleNumber ? 'text-[#008080]' : 'text-gray-400'}">
                         ${r.raffleNumber ? '#' + r.raffleNumber : '-'}
                     </td>
                     <td class="px-4 py-3">
-                        <div class="flex gap-2 flex-wrap">
-                            <button onclick="viewDetails(${index})" class="text-[#008080] hover:text-[#006666] font-semibold text-sm whitespace-nowrap">
-                                👁️ Ver
-                            </button>
-                            <button onclick="generateReport(${index}, 'complete')" class="text-blue-600 hover:text-blue-800 font-semibold text-sm whitespace-nowrap">
-                                📊 Informe
-                            </button>
-                            <button onclick="generateReport(${index}, 'commercial')" class="text-green-600 hover:text-green-800 font-semibold text-sm whitespace-nowrap">
-                                💼 Propuesta
-                            </button>
-                        </div>
+                        <button onclick="viewDetails(${index})" class="text-[#008080] hover:text-[#006666] font-semibold text-sm">
+                            Ver Detalles
+                        </button>
                     </td>
                 </tr>
             `).join('');
@@ -425,8 +406,8 @@
                 const matchesPriority = !priorityFilter || r.priority === priorityFilter;
                 
                 const matchesRaffle = !raffleFilter || 
-                    (raffleFilter === 'si' && r.participatesInRaffle) ||
-                    (raffleFilter === 'no' && !r.participatesInRaffle);
+                    (raffleFilter === 'si' && r.wantRaffle) ||
+                    (raffleFilter === 'no' && !r.wantRaffle);
                 
                 return matchesSearch && matchesPriority && matchesRaffle;
             });
@@ -475,7 +456,7 @@
             const r = allResponses[index];
             const modal = `
                 <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onclick="closeModal()">
-                    <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8" onclick="event.stopPropagation()">
+                    <div class="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8" onclick="event.stopPropagation()">
                         <div class="flex justify-between items-start mb-6">
                             <h2 class="text-2xl font-bold text-gray-800">Detalle Completo</h2>
                             <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
@@ -488,7 +469,7 @@
                                     r.priority === '🟡 WARM' ? 'bg-yellow-100 text-yellow-600' :
                                     'bg-green-100 text-green-600'
                                 }">${r.priority}</span>
-                                ${r.participatesInRaffle ? '<span class="px-3 py-1 rounded-full text-sm font-bold bg-purple-100 text-purple-600">🎁 Sorteo #' + r.raffleNumber + '</span>' : ''}
+                                ${r.wantRaffle ? '<span class="px-3 py-1 rounded-full text-sm font-bold bg-purple-100 text-purple-600">Sorteo #' + r.raffleNumber + '</span>' : ''}
                             </div>
                             
                             <div class="grid grid-cols-2 gap-4">
@@ -497,7 +478,7 @@
                                     <p class="font-semibold">${r.p10}</p>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-gray-500">Peluquería</p>
+                                    <p class="text-sm text-gray-500">Peluqueria</p>
                                     <p class="font-semibold">${r.p11}</p>
                                 </div>
                                 <div>
@@ -505,9 +486,13 @@
                                     <p class="font-semibold">${r.p14}</p>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-gray-500">Dirección</p>
-                                    <p class="font-semibold">${r.p15 || 'No proporcionada'}</p>
+                                    <p class="text-sm text-gray-500">Ubicacion</p>
+                                    <p class="font-semibold">${r.p15 || 'N/A'}</p>
                                 </div>
+                                ${r.p15_direccion ? `<div class="col-span-2">
+                                    <p class="text-sm text-gray-500">Direccion completa</p>
+                                    <p class="font-semibold">${r.p15_direccion}</p>
+                                </div>` : ''}
                                 <div>
                                     <p class="text-sm text-gray-500">WhatsApp</p>
                                     <p class="font-semibold"><a href="https://wa.me/${r.p12.replace(/[^0-9]/g, '')}" target="_blank" class="text-green-600">${r.p12}</a></p>
@@ -521,28 +506,55 @@
                             <hr class="my-4">
                             
                             <div>
-                                <h3 class="font-bold text-lg mb-3">📊 Validación MVP</h3>
+                                <h3 class="font-bold text-lg mb-3">Cualificacion</h3>
                                 <div class="space-y-2 text-sm">
-                                    <p><strong>Tiempo gestión agenda/día:</strong> ${r.p1}</p>
-                                    <p><strong>Mayor problema:</strong> ${r.p2}</p>
-                                    <p><strong>Pagaría:</strong> <span class="font-bold text-green-600">${r.p3}</span></p>
-                                    <p><strong>Principal freno:</strong> ${r.p4}</p>
-                                    <p><strong>Prueba gratis:</strong> ${r.p5}</p>
-                                    <p><strong>Contactar:</strong> <span class="font-bold">${r.p16}</span></p>
+                                    <p><strong>Tiempo gestion agenda:</strong> ${r.p1 || 'N/A'}</p>
+                                    <p><strong>Mayor problema:</strong> ${r.p2 || 'N/A'}</p>
                                 </div>
                             </div>
                             
                             <hr class="my-4">
                             
                             <div>
-                                <h3 class="font-bold text-lg mb-3">📱 Redes Sociales</h3>
+                                <h3 class="font-bold text-lg mb-3">Necesidades del Negocio</h3>
                                 <div class="space-y-2 text-sm">
-                                    <p><strong>Qué le quita tiempo:</strong> ${r.p6}</p>
-                                    <p><strong>Redes que usa:</strong> ${r.p7}</p>
-                                    <p><strong>Tiempo semanal RRSS:</strong> ${r.p8}</p>
-                                    <p><strong>Pagaría contenido IA:</strong> ${r.p9}</p>
+                                    <p><strong>Que mas le quita tiempo/dinero:</strong> ${r.p5 || 'N/A'}</p>
+                                    <p><strong>Facturacion obligatoria 2026:</strong> ${r.p6 || 'N/A'}</p>
+                                    <p><strong>Tiempo gestion stock semanal:</strong> ${r.p7 || 'N/A'}</p>
+                                    <p><strong>Gestion horarios empleados:</strong> ${r.p8 || 'N/A'}</p>
                                 </div>
                             </div>
+                            
+                            <hr class="my-4">
+                            
+                            <div>
+                                <h3 class="font-bold text-lg mb-3">Validacion de Solucion</h3>
+                                <div class="space-y-2 text-sm">
+                                    <p><strong>Que le frena:</strong> ${r.p3 || 'N/A'}</p>
+                                    <p><strong>Probar GRATIS 15 dias:</strong> ${r.p4 || 'N/A'}</p>
+                                    <p><strong>Sistema todo-en-uno:</strong> ${r.p9 || 'N/A'}</p>
+                                    <p><strong>Precio que pagaria:</strong> <span class="font-bold text-green-600">${r.p18_precio || 'N/A'}</span></p>
+                                </div>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <div>
+                                <h3 class="font-bold text-lg mb-3">Horario de Contacto</h3>
+                                <div class="space-y-2 text-sm">
+                                    ${r.p17_horario ? `<p><strong>Horarios:</strong> ${r.p17_horario}</p>` : ''}
+                                    ${r.p17_dias ? `<p><strong>Dias:</strong> ${r.p17_dias}</p>` : ''}
+                                    ${r.p17_solo_email ? '<p class="text-blue-600 font-bold">SOLO CONTACTO POR EMAIL</p>' : ''}
+                                </div>
+                            </div>
+                            
+                            ${r.observaciones ? `
+                            <hr class="my-4">
+                            <div>
+                                <h3 class="font-bold text-lg mb-3">Observaciones</h3>
+                                <p class="text-sm bg-yellow-50 p-3 rounded">${r.observaciones}</p>
+                            </div>
+                            ` : ''}
                             
                             <hr class="my-4">
                             
@@ -552,11 +564,11 @@
                         <div class="mt-6 flex gap-3">
                             <a href="https://wa.me/${r.p12.replace(/[^0-9]/g, '')}" target="_blank" 
                                class="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-green-700">
-                                📱 WhatsApp
+                                WhatsApp
                             </a>
                             <a href="mailto:${r.p13}" 
                                class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-blue-700">
-                                📧 Email
+                                Email
                             </a>
                         </div>
                     </div>
@@ -571,49 +583,68 @@
             if (modal) modal.remove();
         }
 
-        async function generateReport(index, type) {
-            const reportType = type === 'complete' ? 'Informe Completo' : 'Propuesta Comercial';
-            const icon = type === 'complete' ? '📊' : '💼';
+        function exportCSV() {
+            if (allResponses.length === 0) {
+                alert('No hay datos para exportar');
+                return;
+            }
             
-            // Show loading
-            const loadingModal = `
-                <div id="reportModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div class="bg-white rounded-xl max-w-3xl w-full p-8 text-center">
-                        <div class="text-6xl mb-4">⏳</div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Generando ${reportType}...</h2>
-                        <p class="text-gray-600">Esto tomará solo unos segundos</p>
-                    </div>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', loadingModal);
+            const headers = ['Prioridad', 'Nombre', 'Peluqueria', 'Ciudad', 'Ubicacion', 'Direccion', 'WhatsApp', 'Email', 
+                           'Tiempo Agenda', 'Mayor Problema', 'Problemas Negocio', 'Facturacion 2026', 'Gestion Stock', 
+                           'Horarios Empleados', 'Freno', 'Probar Gratis', 'Sistema Todo-en-Uno', 'Precio', 
+                           'Horarios Contacto', 'Dias Contacto', 'Solo Email', 'Observaciones', 'Sorteo', 'Numero Sorteo', 'Timestamp'];
             
-            try {
-                const response = await axios.post('/api/generate-report', { index, type });
-                const report = response.data.report;
-                
-                // Remove loading modal
-                document.getElementById('reportModal').remove();
-                
-                // Show report modal
-                const reportModal = `
-                    <div id="reportModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onclick="closeReportModal()">
-                        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col" onclick="event.stopPropagation()">
-                            <div class="p-6 border-b">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h2 class="text-2xl font-bold text-gray-800">${icon} ${reportType}</h2>
-                                        <p class="text-sm text-gray-500 mt-1">Personalizado para ${allResponses[index].p11}</p>
-                                    </div>
-                                    <button onclick="closeReportModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
-                                </div>
-                            </div>
-                            
-                            <div class="p-6 overflow-y-auto flex-1">
-                                <textarea id="reportContent" class="w-full h-full min-h-[400px] p-4 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none font-mono text-sm" style="white-space: pre-wrap;">${report}</textarea>
-                            </div>
-                            
-                            <div class="p-6 border-t bg-gray-50">
-                                <div class="flex gap-3 flex-wrap">
-                                    <button onclick="copyReport()" class="flex-1 bg-[#008080] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#006666] transition">
-                                        📋 Copiar al Portapapeles
-                                   
+            const rows = allResponses.map(r => [
+                r.priority,
+                r.p10,
+                r.p11,
+                r.p14,
+                r.p15 || '',
+                r.p15_direccion || '',
+                r.p12,
+                r.p13,
+                r.p1 || '',
+                r.p2 || '',
+                r.p5 || '',
+                r.p6 || '',
+                r.p7 || '',
+                r.p8 || '',
+                r.p3 || '',
+                r.p4 || '',
+                r.p9 || '',
+                r.p18_precio || '',
+                r.p17_horario || '',
+                r.p17_dias || '',
+                r.p17_solo_email || '',
+                r.observaciones || '',
+                r.wantRaffle ? 'Si' : 'No',
+                r.raffleNumber || '',
+                r.timestamp
+            ]);
+            
+            const csvContent = [headers, ...rows]
+                .map(row => row.map(cell => `"${cell}"`).join(','))
+                .join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `encuesta_mvp_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+
+        function drawWinner() {
+            const participants = allResponses.filter(r => r.wantRaffle && r.raffleNumber);
+            
+            if (participants.length === 0) {
+                alert('No hay participantes en el sorteo todavia');
+                return;
+            }
+            
+            const winner = participants[Math.floor(Math.random() * participants.length)];
+            
+            alert(`GANADOR DEL SORTEO!\n\n#${winner.raffleNumber} - ${winner.p10}\n${winner.p11} - ${winner.p14}\n\nWhatsApp: ${winner.p12}\nEmail: ${winner.p13}`);
+        }
+    </script>
+</body>
+</html>
