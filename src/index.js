@@ -173,7 +173,7 @@ app.get('/', (c) => {
     <div class="min-h-screen p-4 md:p-8">
         <!-- Header -->
         <div class="max-w-3xl mx-auto mb-8">
-            <div class="bg-gradient-to-r from-[#9B8DC6] to-[#B8A5D6] text-white rounded-2xl shadow-xl p-8 text-center">
+            <div class="bg-gradient-to-r from-[#9B8DC6] to-[#1b285e] text-white rounded-2xl shadow-xl p-8 text-center">
                 <div class="mb-4">
                     <img src="https://page.gensparksite.com/v1/base64_upload/a70b1fe40910547351447ef32a13f4af" 
                          alt="Galia Digital Logo" 
@@ -186,14 +186,14 @@ app.get('/', (c) => {
 
         <!-- Raffle Banner -->
         <div class="max-w-3xl mx-auto mb-8">
-            <div class="bg-gradient-to-r from-[#F3F0F9] to-[#F5F2FB] border-2 border-[#D4CDEB] rounded-xl p-6 text-center">
+            <div class="bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 text-center">
                 <div class="text-4xl mb-2">🎁</div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Sorteo Especial A Coruña!</h2>
                 <p class="text-gray-600 mb-1">Participa y gana 1 año de Agenda Inteligente IA</p>
                 <p class="text-[#9B8DC6] font-bold text-lg">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
                 <p class="text-sm text-gray-500 mt-2">📅 Sorteo: 24 noviembre 2025</p>
                 <p class="text-xs text-gray-500 mt-2">
-                    <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#9B8DC6] underline hover:text-[#8A7DB5]">
+                    <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#9B8DC6] underline hover:text-[#006666]">
                         📋 Ver bases legales del sorteo
                     </a>
                 </p>
@@ -210,7 +210,7 @@ app.get('/', (c) => {
                         <span class="text-sm font-semibold text-[#9B8DC6]" id="progress-text">0/16</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full h-3">
-                        <div class="bg-gradient-to-r from-[#9B8DC6] to-[#B8A5D6] h-3 rounded-full transition-all duration-300" 
+                        <div class="bg-gradient-to-r from-[#9B8DC6] to-[#1b285e] h-3 rounded-full transition-all duration-300" 
                              id="progress-bar" style="width: 0%"></div>
                     </div>
                 </div>
@@ -469,7 +469,7 @@ app.get('/', (c) => {
                         </div>
 
                         <!-- Sorteo Opt-in -->
-                        <div class="mb-6 bg-gradient-to-r from-[#F3F0F9] to-[#F5F2FB] border-2 border-[#D4CDEB] rounded-xl p-6">
+                        <div class="mb-6 bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6">
                             <div class="flex items-start">
                                 <input type="checkbox" id="wantRaffle" name="wantRaffle" value="si" class="mt-1 mr-3 w-5 h-5 text-[#9B8DC6]">
                                 <label for="wantRaffle" class="cursor-pointer">
@@ -477,7 +477,7 @@ app.get('/', (c) => {
                                     <p class="text-sm text-gray-600 mt-1">Sorteo exclusivo: 1 año de Agenda Inteligente IA (Valor: 1.020€)</p>
                                     <p class="text-xs text-gray-500 mt-1">
                                         📅 Fecha: 24 noviembre 2025 • Solo peluquerías de A Coruña • 
-                                        <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#9B8DC6] underline hover:text-[#8A7DB5]">Ver bases legales</a>
+                                        <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#9B8DC6] underline hover:text-[#006666]">Ver bases legales</a>
                                     </p>
                                 </label>
                             </div>
@@ -503,7 +503,7 @@ app.get('/', (c) => {
                             <div class="flex items-start">
                                 <input type="checkbox" id="acceptGDPR" name="acceptGDPR" required class="mt-1 mr-3 w-5 h-5 text-[#9B8DC6]">
                                 <label for="acceptGDPR" class="cursor-pointer text-sm">
-                                    <span class="font-semibold text-gray-800">He leído y acepto la <a href="https://galiadigital.es/politica-de-privacidad/" target="_blank" class="text-[#9B8DC6] underline hover:text-[#8A7DB5]">Política de Protección de Datos</a></span>
+                                    <span class="font-semibold text-gray-800">He leído y acepto la <a href="https://galiadigital.es/politica-de-privacidad/" target="_blank" class="text-[#9B8DC6] underline hover:text-[#006666]">Política de Protección de Datos</a></span>
                                     <p class="text-xs text-gray-600 mt-2">
                                         Tus datos serán tratados conforme al RGPD. Podrás ejercer tus derechos de acceso, rectificación, cancelación y oposición en cualquier momento contactando con eva@galiadigital.es
                                     </p>
@@ -528,11 +528,11 @@ app.get('/', (c) => {
                             ← Anterior
                         </button>
                         <button type="button" id="nextBtn" 
-                                class="ml-auto px-6 py-3 bg-[#9B8DC6] text-white rounded-lg font-bold hover:bg-[#8A7DB5] transition">
+                                class="ml-auto px-6 py-3 bg-[#9B8DC6] text-white rounded-lg font-bold hover:bg-[#006666] transition">
                             Siguiente →
                         </button>
                         <button type="submit" id="submitBtn" 
-                                class="ml-auto px-8 py-3 bg-gradient-to-r from-[#9B8DC6] to-[#B8A5D6] text-white rounded-lg font-bold hover:shadow-xl transition transform hover:scale-105 hidden">
+                                class="ml-auto px-8 py-3 bg-gradient-to-r from-[#9B8DC6] to-[#1b285e] text-white rounded-lg font-bold hover:shadow-xl transition transform hover:scale-105 hidden">
                             📤 Enviar Resultados
                         </button>
                     </div>
@@ -543,7 +543,7 @@ app.get('/', (c) => {
                     <div class="text-6xl mb-4">🎉</div>
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Gracias por participar!</h2>
                     <p class="text-gray-600 mb-4">Tu respuesta ha sido registrada correctamente</p>
-                    <div id="raffleInfo" class="hidden bg-gradient-to-r from-[#F3F0F9] to-[#F5F2FB] border-2 border-[#D4CDEB] rounded-xl p-6 mt-6">
+                    <div id="raffleInfo" class="hidden bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 mt-6">
                         <div class="text-4xl mb-3">🎁</div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Participas en el Sorteo!</h3>
                         <p class="text-[#9B8DC6] font-bold text-3xl mb-2">Tu número: <span id="raffleNumberDisplay"></span></p>

@@ -18,7 +18,7 @@
     <div class="min-h-screen p-8">
         <!-- Header -->
         <div class="max-w-7xl mx-auto mb-8">
-            <div class="bg-gradient-to-r from-[#9B8DC6] to-[#B8A5D6] text-white rounded-2xl shadow-xl p-8">
+            <div class="bg-gradient-to-r from-[#008080] to-[#1b285e] text-white rounded-2xl shadow-xl p-8">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-6">
                         <img src="https://page.gensparksite.com/v1/base64_upload/a70b1fe40910547351447ef32a13f4af" 
@@ -29,7 +29,7 @@
                             <p class="text-lg md:text-xl opacity-90">Control total de tus leads - Galia Digital</p>
                         </div>
                     </div>
-                    <button onclick="loadData()" class="bg-white text-[#9B8DC6] px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    <button onclick="loadData()" class="bg-white text-[#008080] px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">
                         🔄 Actualizar Datos
                     </button>
                 </div>
@@ -69,13 +69,13 @@
             </div>
 
             <!-- Participantes Sorteo -->
-            <div class="bg-[#F3F0F9] border-2 border-[#D4CDEB] rounded-xl shadow-lg p-6">
+            <div class="bg-[#E6F2F2] border-2 border-[#008080] rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="text-[#9B8DC6] font-semibold">🎁 Sorteo A Coruña</div>
+                    <div class="text-[#008080] font-semibold">🎁 Sorteo A Coruña</div>
                     <div class="text-3xl">🎁</div>
                 </div>
-                <div class="text-4xl font-bold text-[#9B8DC6]" id="raffleParticipants">0</div>
-                <div class="text-sm text-[#9B8DC6] mt-2">Participantes inscritos</div>
+                <div class="text-4xl font-bold text-[#008080]" id="raffleParticipants">0</div>
+                <div class="text-sm text-[#008080] mt-2">Participantes inscritos</div>
             </div>
         </div>
 
@@ -87,14 +87,14 @@
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">🔍 Buscar</label>
                         <input type="text" id="searchInput" placeholder="Nombre, peluquería, ciudad..." 
-                               class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#9B8DC6] focus:outline-none"
+                               class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none"
                                onkeyup="filterTable()">
                     </div>
                     
                     <!-- Filtro por Prioridad -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">🎯 Prioridad</label>
-                        <select id="priorityFilter" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#9B8DC6] focus:outline-none" onchange="filterTable()">
+                        <select id="priorityFilter" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none" onchange="filterTable()">
                             <option value="">Todas</option>
                             <option value="🔥 HOT">🔥 HOT</option>
                             <option value="🟡 WARM">🟡 WARM</option>
@@ -105,7 +105,7 @@
                     <!-- Filtro por Sorteo -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">🎁 Sorteo</label>
-                        <select id="raffleFilter" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#9B8DC6] focus:outline-none" onchange="filterTable()">
+                        <select id="raffleFilter" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none" onchange="filterTable()">
                             <option value="">Todos</option>
                             <option value="si">Solo participantes</option>
                             <option value="no">No participantes</option>
@@ -184,14 +184,14 @@
 
         <!-- Sorteo Section (moved to end) -->
         <div class="max-w-7xl mx-auto mb-8">
-            <div class="bg-gradient-to-r from-[#F3F0F9] to-[#F5F2FB] border-2 border-[#D4CDEB] rounded-xl shadow-lg p-8">
+            <div class="bg-gradient-to-r from-[#E6F2F2] to-[#F5F2FB] border-2 border-[#B3D9D9] rounded-xl shadow-lg p-8">
                 <div class="text-center mb-6">
                     <div class="text-5xl mb-3">🎁</div>
                     <h3 class="text-3xl font-bold text-gray-800 mb-2">Sorteo Agenda Inteligente IA</h3>
                     <p class="text-gray-600">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
                     <p class="text-sm text-gray-500 mt-2">📅 Fecha sorteo: 24 noviembre 2025</p>
                     <p class="text-xs text-gray-500 mt-2">
-                        <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#9B8DC6] underline hover:text-[#8A7DB5]">
+                        <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">
                             📋 Ver bases legales del sorteo
                         </a>
                     </p>
@@ -200,7 +200,7 @@
                 <div class="bg-white rounded-lg p-6 mb-6">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                         <div>
-                            <p class="text-3xl font-bold text-[#9B8DC6]" id="raffleParticipants2">0</p>
+                            <p class="text-3xl font-bold text-[#008080]" id="raffleParticipants2">0</p>
                             <p class="text-sm text-gray-600">Participantes de A Coruña</p>
                         </div>
                         <div>
@@ -216,7 +216,7 @@
                 
                 <div class="text-center">
                     <button onclick="drawWinner()" 
-                            class="bg-gradient-to-r from-[#9B8DC6] to-[#B8A5D6] text-white px-12 py-4 rounded-lg font-bold text-xl hover:shadow-xl transition transform hover:scale-105">
+                            class="bg-gradient-to-r from-[#008080] to-[#1b285e] text-white px-12 py-4 rounded-lg font-bold text-xl hover:shadow-xl transition transform hover:scale-105">
                         🎲 SORTEAR GANADOR AHORA
                     </button>
                     <p class="text-xs text-gray-500 mt-3">Solo participan peluquerías de A Coruña</p>
@@ -391,12 +391,12 @@
                     </td>
                     <td class="px-4 py-3">${r.p16}</td>
                     <td class="px-4 py-3 text-sm">${r.p3}</td>
-                    <td class="px-4 py-3 font-bold ${r.raffleNumber ? 'text-[#9B8DC6]' : 'text-gray-400'}">
+                    <td class="px-4 py-3 font-bold ${r.raffleNumber ? 'text-[#008080]' : 'text-gray-400'}">
                         ${r.raffleNumber ? '#' + r.raffleNumber : '-'}
                     </td>
                     <td class="px-4 py-3">
                         <div class="flex gap-2 flex-wrap">
-                            <button onclick="viewDetails(${index})" class="text-[#9B8DC6] hover:text-[#8A7DB5] font-semibold text-sm whitespace-nowrap">
+                            <button onclick="viewDetails(${index})" class="text-[#008080] hover:text-[#006666] font-semibold text-sm whitespace-nowrap">
                                 👁️ Ver
                             </button>
                             <button onclick="generateReport(${index}, 'complete')" class="text-blue-600 hover:text-blue-800 font-semibold text-sm whitespace-nowrap">
@@ -609,173 +609,11 @@
                             </div>
                             
                             <div class="p-6 overflow-y-auto flex-1">
-                                <textarea id="reportContent" class="w-full h-full min-h-[400px] p-4 border-2 border-gray-300 rounded-lg focus:border-[#9B8DC6] focus:outline-none font-mono text-sm" style="white-space: pre-wrap;">${report}</textarea>
+                                <textarea id="reportContent" class="w-full h-full min-h-[400px] p-4 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none font-mono text-sm" style="white-space: pre-wrap;">${report}</textarea>
                             </div>
                             
                             <div class="p-6 border-t bg-gray-50">
                                 <div class="flex gap-3 flex-wrap">
-                                    <button onclick="copyReport()" class="flex-1 bg-[#9B8DC6] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#8A7DB5] transition">
+                                    <button onclick="copyReport()" class="flex-1 bg-[#008080] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#006666] transition">
                                         📋 Copiar al Portapapeles
-                                    </button>
-                                    <button onclick="sendReportWhatsApp(${index})" class="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition">
-                                        📱 Enviar por WhatsApp
-                                    </button>
-                                    <button onclick="sendReportEmail(${index})" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
-                                        📧 Enviar por Email
-                                    </button>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-3 text-center">Puedes editar el texto antes de enviarlo</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                document.body.insertAdjacentHTML('beforeend', reportModal);
-                
-            } catch (error) {
-                document.getElementById('reportModal')?.remove();
-                console.error('Error generating report:', error);
-                alert('Error al generar el informe. Por favor, intenta de nuevo.');
-            }
-        }
-
-        function closeReportModal() {
-            const modal = document.getElementById('reportModal');
-            if (modal) modal.remove();
-        }
-
-        function copyReport() {
-            const reportContent = document.getElementById('reportContent');
-            reportContent.select();
-            document.execCommand('copy');
-            
-            // Show success message
-            const btn = event.target;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '✅ Copiado!';
-            btn.classList.add('bg-green-600');
-            btn.classList.remove('bg-[#9B8DC6]');
-            
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.classList.remove('bg-green-600');
-                btn.classList.add('bg-[#9B8DC6]');
-            }, 2000);
-        }
-
-        function sendReportWhatsApp(index) {
-            const lead = allResponses[index];
-            const reportContent = document.getElementById('reportContent').value;
-            const phone = lead.p12.replace(/[^0-9]/g, '');
-            const message = encodeURIComponent(reportContent);
-            const url = `https://wa.me/${phone}?text=${message}`;
-            window.open(url, '_blank');
-        }
-
-        function sendReportEmail(index) {
-            const lead = allResponses[index];
-            const reportContent = document.getElementById('reportContent').value;
-            const subject = encodeURIComponent(`Informe Personalizado para ${lead.p11}`);
-            const body = encodeURIComponent(reportContent);
-            const url = `mailto:${lead.p13}?subject=${subject}&body=${body}`;
-            window.location.href = url;
-        }
-
-        // Sorteo section moved to end
-        async function drawWinner() {
-            if (confirm('¿Estás segura de realizar el sorteo ahora? Esta acción seleccionará un ganador aleatorio.')) {
-                try {
-                    const response = await axios.post('/api/draw-winner');
-                    const winner = response.data.winner;
-                    
-                    const winnerHtml = `
-                        <div id="winnerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                            <div class="bg-white rounded-xl max-w-lg w-full p-8">
-                                <div class="text-center">
-                                    <div class="text-6xl mb-4">🎉</div>
-                                    <h2 class="text-3xl font-bold text-gray-800 mb-6">¡GANADOR DEL SORTEO!</h2>
-                                    <div class="space-y-3 text-left bg-gradient-to-r from-[#F3F0F9] to-[#F5F2FB] p-6 rounded-lg mb-6">
-                                        <p><strong>Nombre:</strong> ${winner.name}</p>
-                                        <p><strong>Peluquería:</strong> ${winner.business}</p>
-                                        <p class="text-center my-4">
-                                            <span class="text-4xl font-bold text-[#9B8DC6]">#${winner.raffleNumber}</span>
-                                        </p>
-                                        <p><strong>Email:</strong> <a href="mailto:${winner.email}" class="text-blue-600">${winner.email}</a></p>
-                                        <p><strong>WhatsApp:</strong> <a href="https://wa.me/${winner.whatsapp.replace(/[^0-9]/g, '')}" target="_blank" class="text-green-600">${winner.whatsapp}</a></p>
-                                    </div>
-                                    <div class="flex gap-3">
-                                        <a href="https://wa.me/${winner.whatsapp.replace(/[^0-9]/g, '')}" target="_blank" 
-                                           class="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700">
-                                            📱 Contactar por WhatsApp
-                                        </a>
-                                        <button onclick="closeWinnerModal()" 
-                                                class="flex-1 bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-300">
-                                            Cerrar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    
-                    document.body.insertAdjacentHTML('beforeend', winnerHtml);
-                    
-                } catch (error) {
-                    console.error('Error en sorteo:', error);
-                    if (error.response && error.response.status === 400) {
-                        alert('No hay participantes en el sorteo todavía. Solo peluquerías de A Coruña pueden participar.');
-                    } else {
-                        alert('Error al realizar el sorteo. Intenta de nuevo.');
-                    }
-                }
-            }
-        }
-
-        function closeWinnerModal() {
-            const modal = document.getElementById('winnerModal');
-            if (modal) modal.remove();
-        }
-
-        function exportCSV() {
-            if (allResponses.length === 0) {
-                alert('No hay datos para exportar');
-                return;
-            }
-            
-            // CSV Headers
-            const headers = [
-                'Timestamp', 'Prioridad', 'Nombre', 'Peluquería', 'Ciudad', 'Dirección',
-                'WhatsApp', 'Email', 'Contactar', 'Tiempo agenda/día', 'Mayor problema',
-                'Willingness to pay', 'Principal freno', 'Probaría gratis', 
-                'Le quita tiempo', 'Redes usa', 'Tiempo RRSS', 'Pagaría contenido IA',
-                'Participa sorteo', 'Número sorteo'
-            ];
-            
-            // CSV Rows
-            const rows = allResponses.map(r => [
-                r.timestamp,
-                r.priority,
-                r.p10, r.p11, r.p14, r.p15 || '',
-                r.p12, r.p13, r.p16,
-                r.p1, r.p2, r.p3, r.p4, r.p5,
-                r.p6, r.p7, r.p8, r.p9,
-                r.participatesInRaffle ? 'SÍ' : 'NO',
-                r.raffleNumber || ''
-            ]);
-            
-            // Build CSV
-            const csv = [
-                headers.join(','),
-                ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
-            ].join('\n');
-            
-            // Download
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `encuesta-mvp-${new Date().toISOString().split('T')[0]}.csv`;
-            link.click();
-        }
-    </script>
-</body>
-</html>
+                                   
