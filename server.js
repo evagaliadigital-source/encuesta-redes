@@ -1,11 +1,11 @@
 import { serve } from '@hono/node-server'
 import app from './src/index.js'
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3000
 
-console.log(`🚀 Servidor iniciado en http://localhost:${port}`)
-console.log(`📊 Dashboard Eva: http://localhost:${port}/dashboard`)
-console.log(`🎁 Encuesta pública: http://localhost:${port}`)
+console.log(`🚀 Servidor iniciado en puerto ${port}`)
+console.log(`📊 Dashboard Eva disponible en /dashboard`)
+console.log(`🎁 Encuesta pública disponible en /`)
 
 serve({
   fetch: app.fetch,
