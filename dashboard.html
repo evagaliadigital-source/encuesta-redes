@@ -868,16 +868,23 @@
             yPos += 5
             addSection('OPCIONES SELECCIONADAS')
             
-            if (data.wantRaffle) {
+            // Support both old (wantRaffle) and new (participatesInRaffle) structure
+            const participatesRaffle = data.participatesInRaffle || data.wantRaffle === 'si' || data.wantRaffle === true
+            if (participatesRaffle) {
                 drawBox(yPos - 4, 8, [230, 255, 230])
                 doc.setFontSize(10)
                 doc.setFont('helvetica', 'bold')
                 doc.setTextColor(0, 128, 0)
-                doc.text('PARTICIPA EN SORTEO - 8 diciembre 2025', margin + 3, yPos + 2)
+                const raffleText = data.raffleNumber 
+                    ? `PARTICIPA EN SORTEO - Numero ${data.raffleNumber} - 8 diciembre 2025`
+                    : 'PARTICIPA EN SORTEO - 8 diciembre 2025'
+                doc.text(raffleText, margin + 3, yPos + 2)
                 yPos += 10
             }
             
-            if (data.wantReport) {
+            // Support both string ('si') and boolean (true)
+            const wantsReport = data.wantReport === 'si' || data.wantReport === true
+            if (wantsReport) {
                 drawBox(yPos - 4, 8, [230, 240, 255])
                 doc.setFontSize(10)
                 doc.setFont('helvetica', 'bold')
