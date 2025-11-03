@@ -722,6 +722,9 @@
 
         // Funcion generatePDF (igual que la del formulario)
         function generatePDF(data) {
+            try {
+                console.log('📄 Iniciando generación PDF con data:', data);
+            
             const { jsPDF } = window.jspdf
             const doc = new jsPDF()
             
@@ -801,7 +804,7 @@
                 doc.setTextColor(80, 80, 80)
                 doc.setFontSize(9)
                 
-                const displayValue = value || 'No respondido'
+                const displayValue = String(value || 'No respondido')
                 const lines = doc.splitTextToSize(displayValue, contentWidth - 10)
                 doc.text(lines, margin + 5, yPos)
                 
@@ -921,7 +924,15 @@
             
             const fileName = 'GaliaDigital_' + (data.p11 || 'Encuesta').replace(/[^a-z0-9]/gi, '_') + '_' + new Date().toISOString().split('T')[0] + '.pdf'
             
+            console.log('✅ PDF generado correctamente:', fileName);
             doc.save(fileName)
+            
+            } catch (error) {
+                console.error('❌ ERROR generando PDF:', error);
+                console.error('Stack:', error.stack);
+                console.error('Data recibida:', data);
+                alert('Error generando PDF. Revisa la consola (F12) para más detalles.');
+            }
         }
 
         function drawWinner() {
