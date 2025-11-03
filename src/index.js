@@ -124,7 +124,11 @@ app.get('/', (c) => {
         <!-- Header -->
         <div class="max-w-3xl mx-auto mb-8">
             <div class="bg-gradient-to-r from-[#9B8DC6] to-[#B8A5D6] text-white rounded-2xl shadow-xl p-8 text-center">
-                <div class="text-6xl mb-4">🐙</div>
+                <div class="mb-4">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/a70b1fe40910547351447ef32a13f4af" 
+                         alt="Galia Digital Logo" 
+                         class="mx-auto h-32 md:h-40 object-contain">
+                </div>
                 <h1 class="text-3xl md:text-4xl font-bold mb-2">GAL IA - Agenda Inteligente</h1>
                 <p class="text-lg opacity-90">Ayúdanos a mejorar la vida de las peluqueras</p>
             </div>
