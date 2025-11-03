@@ -20,6 +20,7 @@
     "@hono/node-server": "^1.19.6",
     "axios": "^1.13.1",
     "hono": "^4.10.4",
-    "nodemailer": "^7.0.10"
+    "nodemailer": "^7.0.10",
+    "pdfkit": "^0.17.2"
   }
 }

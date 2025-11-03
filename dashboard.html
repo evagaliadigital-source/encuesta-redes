@@ -704,20 +704,17 @@
         }
 
         // Funcion para descargar PDF de una respuesta especifica
+        // NUEVA ESTRATEGIA: Abrir ventana nueva con formulario que genera PDF
         function downloadPDF(index) {
             const data = allResponses[index];
-            console.log('🔍 DEBUG downloadPDF:', {
-                index,
-                hasData: !!data,
-                p1: data?.p1,
-                p2: data?.p2,
-                p5: data?.p5,
-                p10: data?.p10,
-                p11: data?.p11,
-                p18_precio: data?.p18_precio,
-                allKeys: data ? Object.keys(data) : []
-            });
-            generatePDF(data);
+            const timestamp = data.timestamp;
+            
+            // Crear ventana nueva que cargue la página de generación de PDF
+            const pdfWindow = window.open(`/generar-pdf?timestamp=${timestamp}`, '_blank');
+            
+            if (!pdfWindow) {
+                alert('Por favor permite pop-ups para descargar el PDF');
+            }
         }
 
         // Funcion generatePDF (igual que la del formulario)

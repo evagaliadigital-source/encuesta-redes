@@ -47,6 +47,68 @@ app.get('/dashboard', (c) => {
   return c.html(readFileSync('./dashboard.html', 'utf8'))
 })
 
+// Página especial para generar PDF de una respuesta existente
+app.get('/generar-pdf', (c) => {
+  const timestamp = c.req.query('timestamp')
+  
+  if (!timestamp) {
+    return c.html('<h1>Error: Timestamp requerido</h1>')
+  }
+  
+  const response = responses.find(r => r.timestamp === timestamp)
+  
+  if (!response) {
+    return c.html('<h1>Error: Respuesta no encontrada</h1>')
+  }
+  
+  // Generar HTML que carga los datos y genera el PDF automáticamente
+  return c.html(`
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generando PDF...</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center; font-family: Arial; margin-top: 100px;">
+        Generando PDF...
+    </h1>
+    <script>
+        // Datos de la respuesta
+        const data = ${JSON.stringify(response)};
+        
+        // Esperar a que jsPDF cargue
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                generatePDF(data);
+                // Cerrar ventana después de 2 segundos
+                setTimeout(function() {
+                    window.close();
+                }, 2000);
+            }, 500);
+        });
+        
+        // COPIAR FUNCIÓN generatePDF DEL FORMULARIO AQUÍ
+        ${readFileSync('./src/index.js', 'utf8').match(/function generatePDF\(data\) \{[\s\S]*?\n        \}/)[0]}
+    </script>
+</body>
+</html>
+  `)
+})
+
+// API: Get PDF URL for a response (returns the data, frontend generates PDF)
+app.get('/api/pdf/:timestamp', (c) => {
+  const timestamp = c.req.param('timestamp')
+  const response = responses.find(r => r.timestamp === timestamp)
+  
+  if (!response) {
+    return c.json({ success: false, message: 'Respuesta no encontrada' }, 404)
+  }
+  
+  return c.json(response)
+})
+
 // API: Get all responses
 app.get('/api/responses', (c) => {
   const hot = responses.filter(r => r.priority === '🔥 HOT').length
