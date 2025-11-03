@@ -59,6 +59,9 @@ app.post('/api/submit-survey', async (c) => {
   
   console.log(`✅ Nueva encuesta recibida: ${data.p10} - ${priority}`)
   
+  // Send email notification to Eva
+  sendEmailToEva(response)
+  
   return c.json({
     success: true,
     raffleNumber,
@@ -604,6 +607,64 @@ function calculatePriority(data) {
 
   // COLD: Everything else
   return '🟢 COLD'
+}
+
+function sendEmailToEva(response) {
+  const priorityIcon = response.priority === '🔥 HOT' ? '🔥' : 
+                       response.priority === '🟡 WARM' ? '🟡' : '🟢'
+  
+  console.log('\n' + '='.repeat(80))
+  console.log(`📧 EMAIL PARA: eva@galiadigital.es`)
+  console.log('='.repeat(80))
+  console.log(`Asunto: ${priorityIcon} NUEVO LEAD ${response.priority} - ${response.p10} (${response.p11})`)
+  console.log('='.repeat(80))
+  console.log('')
+  console.log(`PRIORIDAD: ${response.priority}`)
+  console.log(`Nombre: ${response.p10}`)
+  console.log(`Peluquería: ${response.p11}`)
+  console.log(`Ciudad: ${response.p14}`)
+  console.log(`WhatsApp: ${response.p12}`)
+  console.log(`Email: ${response.p13}`)
+  console.log(`Dirección: ${response.p15 || 'No proporcionada'}`)
+  console.log('')
+  console.log('💰 VALIDACIÓN MVP:')
+  console.log(`  - Tiempo gestión agenda/día: ${response.p1}`)
+  console.log(`  - Mayor problema: ${response.p2}`)
+  console.log(`  - Pagaría: ${response.p3}`)
+  console.log(`  - Principal freno: ${response.p4}`)
+  console.log(`  - Prueba gratis: ${response.p5}`)
+  console.log(`  - Contactar: ${response.p16}`)
+  console.log('')
+  console.log('📱 REDES SOCIALES:')
+  console.log(`  - Qué le quita tiempo: ${response.p6}`)
+  console.log(`  - Usa: ${response.p7}`)
+  console.log(`  - Tiempo semanal RRSS: ${response.p8}`)
+  console.log(`  - Pagaría contenido IA: ${response.p9}`)
+  console.log('')
+  
+  if (response.participatesInRaffle) {
+    console.log('🎁 SORTEO:')
+    console.log(`  Participa: SÍ`)
+    console.log(`  Número: #${response.raffleNumber}`)
+    console.log('')
+  }
+  
+  console.log('⚡ ACCIÓN RECOMENDADA:')
+  if (response.priority === '🔥 HOT') {
+    console.log(`  🔥 LLAMAR EN LAS PRÓXIMAS 24 HORAS`)
+    console.log(`  Perfil ideal: alta disposición de pago + necesita solución urgente`)
+  } else if (response.priority === '🟡 WARM') {
+    console.log(`  🟡 SEGUIMIENTO EN 3-5 DÍAS`)
+    console.log(`  Interesado pero no urgente. Nutrir con contenido de valor`)
+  } else {
+    console.log(`  🟢 FOLLOW-UP LARGO PLAZO`)
+    console.log(`  Añadir a lista de nurturing. Email automatizado mensual`)
+  }
+  
+  console.log('')
+  console.log(`Timestamp: ${response.timestamp}`)
+  console.log('='.repeat(80))
+  console.log('\n')
 }
 
 export default app
