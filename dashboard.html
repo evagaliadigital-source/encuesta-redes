@@ -706,6 +706,17 @@
         // Funcion para descargar PDF de una respuesta especifica
         function downloadPDF(index) {
             const data = allResponses[index];
+            console.log('🔍 DEBUG downloadPDF:', {
+                index,
+                hasData: !!data,
+                p1: data?.p1,
+                p2: data?.p2,
+                p5: data?.p5,
+                p10: data?.p10,
+                p11: data?.p11,
+                p18_precio: data?.p18_precio,
+                allKeys: data ? Object.keys(data) : []
+            });
             generatePDF(data);
         }
 
