@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
         body {
@@ -567,6 +568,10 @@
                         </div>
                         
                         <div class="mt-6 flex gap-3">
+                            <button onclick="downloadPDF(${index})" 
+                                    class="flex-1 bg-purple-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-purple-700">
+                                Descargar PDF
+                            </button>
                             <a href="https://wa.me/${r.p12.replace(/[^0-9]/g, '')}" target="_blank" 
                                class="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-green-700">
                                 WhatsApp
@@ -696,6 +701,209 @@
             link.href = URL.createObjectURL(blob);
             link.download = `encuesta_mvp_${new Date().toISOString().split('T')[0]}.csv`;
             link.click();
+        }
+
+        // Funcion para descargar PDF de una respuesta especifica
+        function downloadPDF(index) {
+            const data = allResponses[index];
+            generatePDF(data);
+        }
+
+        // Funcion generatePDF (igual que la del formulario)
+        function generatePDF(data) {
+            const { jsPDF } = window.jspdf
+            const doc = new jsPDF()
+            
+            let yPos = 15
+            const pageHeight = 270
+            const pageWidth = 210
+            const margin = 15
+            const contentWidth = pageWidth - (margin * 2)
+            
+            doc.setFillColor(0, 128, 128)
+            doc.rect(0, 0, pageWidth, 45, 'F')
+            
+            doc.setFillColor(27, 40, 94)
+            doc.rect(0, 35, pageWidth, 10, 'F')
+            
+            const logoData = 'data:image/jpeg;base64,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'
+            try {
+                doc.addImage(logoData, 'JPEG', 15, 8, 30, 15)
+            } catch (e) {
+                console.warn('Error logo:', e)
+            }
+            
+            doc.setFontSize(24)
+            doc.setTextColor(255, 255, 255)
+            doc.setFont('helvetica', 'bold')
+            doc.text('GALIA DIGITAL', pageWidth / 2, 20, { align: 'center' })
+            
+            doc.setFontSize(12)
+            doc.setFont('helvetica', 'normal')
+            doc.text('Encuesta MVP - Agenda Inteligente IA', pageWidth / 2, 28, { align: 'center' })
+            
+            doc.setFontSize(9)
+            doc.text('Fecha: ' + new Date().toLocaleString('es-ES'), pageWidth / 2, 40, { align: 'center' })
+            
+            yPos = 55
+            
+            function drawBox(y, height, color) {
+                doc.setFillColor(color[0], color[1], color[2])
+                doc.roundedRect(margin, y, contentWidth, height, 2, 2, 'F')
+            }
+            
+            function addSection(title) {
+                if (yPos > pageHeight - 15) {
+                    doc.addPage()
+                    yPos = 20
+                }
+                
+                doc.setDrawColor(0, 128, 128)
+                doc.setLineWidth(0.5)
+                doc.line(margin, yPos - 3, pageWidth - margin, yPos - 3)
+                
+                doc.setFontSize(13)
+                doc.setFont('helvetica', 'bold')
+                doc.setTextColor(0, 128, 128)
+                doc.text(title, margin, yPos + 3)
+                
+                yPos += 10
+            }
+            
+            function addField(label, value, highlight = false) {
+                if (yPos > pageHeight) {
+                    doc.addPage()
+                    yPos = 20
+                }
+                
+                if (highlight) {
+                    drawBox(yPos - 4, 8, [230, 242, 242])
+                }
+                
+                doc.setFontSize(10)
+                doc.setFont('helvetica', 'bold')
+                doc.setTextColor(45, 45, 45)
+                doc.text(label, margin + 2, yPos)
+                
+                yPos += 5
+                doc.setFont('helvetica', 'normal')
+                doc.setTextColor(80, 80, 80)
+                doc.setFontSize(9)
+                
+                const displayValue = value || 'No respondido'
+                const lines = doc.splitTextToSize(displayValue, contentWidth - 10)
+                doc.text(lines, margin + 5, yPos)
+                
+                yPos += (lines.length * 5) + 4
+            }
+            
+            addSection('DATOS PERSONALES')
+            
+            drawBox(yPos - 4, 12, [78, 53, 128])
+            doc.setFontSize(14)
+            doc.setFont('helvetica', 'bold')
+            doc.setTextColor(255, 255, 255)
+            doc.text(data.p10 || 'Sin nombre', margin + 5, yPos + 4)
+            yPos += 15
+            
+            addField('Peluqueria:', data.p11, true)
+            addField('WhatsApp:', data.p12)
+            addField('Email:', data.p13)
+            addField('Ciudad:', data.p14)
+            addField('Ubicacion del salon:', data.p15)
+            if (data.p15_direccion) addField('Direccion completa:', data.p15_direccion)
+            
+            yPos += 5
+            
+            addSection('CUALIFICACION')
+            addField('Tiempo dedicado a gestion de agenda:', data.p1)
+            addField('Mayor problema con las citas:', data.p2)
+            
+            yPos += 3
+            
+            addSection('NECESIDADES DEL NEGOCIO')
+            addField('Que mas te quita tiempo o dinero:', data.p5)
+            addField('Facturacion obligatoria 2026:', data.p6)
+            addField('Tiempo gestion stock semanal:', data.p7)
+            addField('Gestion horarios empleados:', data.p8)
+            
+            yPos += 3
+            
+            addSection('VALIDACION DE SOLUCION')
+            addField('Que te frena para automatizar:', data.p3)
+            addField('Probar GRATIS 15 dias:', data.p4)
+            addField('Sistema todo-en-uno:', data.p9)
+            
+            yPos += 2
+            drawBox(yPos - 4, 12, [230, 242, 242])
+            doc.setFontSize(11)
+            doc.setFont('helvetica', 'bold')
+            doc.setTextColor(0, 128, 128)
+            doc.text('PRECIO QUE PAGARIAS:', margin + 3, yPos + 2)
+            doc.setFontSize(12)
+            doc.setTextColor(27, 40, 94)
+            doc.text(data.p18_precio || 'No especificado', margin + 70, yPos + 2)
+            yPos += 15
+            
+            addSection('HORARIO DE CONTACTO')
+            if (data.p17_horario) addField('Horarios preferidos:', data.p17_horario)
+            if (data.p17_dias) addField('Dias preferidos:', data.p17_dias)
+            if (data.p17_solo_email) {
+                drawBox(yPos - 4, 8, [230, 242, 255])
+                doc.setFontSize(10)
+                doc.setFont('helvetica', 'bold')
+                doc.setTextColor(27, 40, 94)
+                doc.text('SOLO CONTACTO POR EMAIL', margin + 3, yPos + 2)
+                yPos += 10
+            }
+            
+            if (data.observaciones) {
+                yPos += 3
+                addSection('OBSERVACIONES')
+                drawBox(yPos - 4, Math.min(30, 5 + (data.observaciones.length / 50) * 5), [255, 250, 240])
+                yPos += 2
+                addField('', data.observaciones)
+            }
+            
+            yPos += 5
+            addSection('OPCIONES SELECCIONADAS')
+            
+            if (data.wantRaffle) {
+                drawBox(yPos - 4, 8, [230, 255, 230])
+                doc.setFontSize(10)
+                doc.setFont('helvetica', 'bold')
+                doc.setTextColor(0, 128, 0)
+                doc.text('PARTICIPA EN SORTEO - 8 diciembre 2025', margin + 3, yPos + 2)
+                yPos += 10
+            }
+            
+            if (data.wantReport) {
+                drawBox(yPos - 4, 8, [230, 240, 255])
+                doc.setFontSize(10)
+                doc.setFont('helvetica', 'bold')
+                doc.setTextColor(27, 40, 94)
+                doc.text('QUIERE RECIBIR INFORME PERSONALIZADO', margin + 3, yPos + 2)
+                yPos += 10
+            }
+            
+            const totalPages = doc.internal.getNumberOfPages()
+            for (let i = 1; i <= totalPages; i++) {
+                doc.setPage(i)
+                
+                doc.setDrawColor(0, 128, 128)
+                doc.setLineWidth(0.3)
+                doc.line(margin, 285, pageWidth - margin, 285)
+                
+                doc.setFontSize(8)
+                doc.setTextColor(100, 100, 100)
+                doc.setFont('helvetica', 'italic')
+                doc.text('Galia Digital - Agenda Inteligente IA', pageWidth / 2, 290, { align: 'center' })
+                doc.text('Pagina ' + i + ' de ' + totalPages, pageWidth - margin, 290, { align: 'right' })
+            }
+            
+            const fileName = 'GaliaDigital_' + (data.p11 || 'Encuesta').replace(/[^a-z0-9]/gi, '_') + '_' + new Date().toISOString().split('T')[0] + '.pdf'
+            
+            doc.save(fileName)
         }
 
         function drawWinner() {
