@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Encuesta MVP - Eva Rodriguez</title>
+    <title>Dashboard Sorteo Redes - Eva Rodriguez</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -16,7 +16,46 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="min-h-screen p-8">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#008080] to-[#1b285e]">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <img src="https://page.gensparksite.com/v1/base64_upload/a70b1fe40910547351447ef32a13f4af" 
+                     alt="Galia Digital Logo" 
+                     class="mx-auto h-24 object-contain mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">Dashboard Privado</h2>
+                <p class="text-gray-600 mt-2">Acceso solo para administradores</p>
+            </div>
+            
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Usuario</label>
+                    <input type="text" id="username" required 
+                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none"
+                           placeholder="Introduce tu usuario">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-semibold mb-2">Contraseña</label>
+                    <input type="password" id="password" required 
+                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none"
+                           placeholder="Introduce tu contraseña">
+                </div>
+                
+                <div id="errorMessage" class="hidden mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+                    ❌ Usuario o contraseña incorrectos
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-[#008080] to-[#1b285e] text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    🔓 Acceder al Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard (hidden until login) -->
+    <div id="dashboardContent" class="min-h-screen p-8" style="display: none;">
         <!-- Header -->
         <div class="max-w-7xl mx-auto mb-8">
             <div class="bg-gradient-to-r from-[#008080] to-[#1b285e] text-white rounded-2xl shadow-xl p-8">
@@ -26,8 +65,8 @@
                              alt="Galia Digital Logo" 
                              class="h-20 md:h-24 object-contain bg-white rounded-lg p-2">
                         <div>
-                            <h1 class="text-3xl md:text-4xl font-bold mb-2">Dashboard Encuesta MVP</h1>
-                            <p class="text-lg md:text-xl opacity-90">Control total de tus leads - Galia Digital</p>
+                            <h1 class="text-3xl md:text-4xl font-bold mb-2">Dashboard Sorteo Redes</h1>
+                            <p class="text-lg md:text-xl opacity-90">Facebook/Instagram - Sorteo 15 diciembre</p>
                         </div>
                     </div>
                     <button onclick="loadData()" class="bg-white text-[#008080] px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">
@@ -562,6 +601,14 @@
                             </div>
                             ` : ''}
                             
+                            ${r.gestor ? `
+                            <hr class="my-4">
+                            <div>
+                                <h3 class="font-bold text-lg mb-3">💼 Gestor</h3>
+                                <p class="text-sm bg-purple-50 p-3 rounded font-semibold text-purple-700">Encuesta recogida por: ${r.gestor}</p>
+                            </div>
+                            ` : ''}
+                            
                             <hr class="my-4">
                             
                             <p class="text-xs text-gray-500">Recibido: ${new Date(r.timestamp).toLocaleString('es-ES')}</p>
@@ -967,6 +1014,42 @@
             
             alert(`GANADOR DEL SORTEO!\n\n#${winner.raffleNumber} - ${winner.p10}\n${winner.p11} - ${winner.p14}\n\nWhatsApp: ${winner.p12}\nEmail: ${winner.p13}`);
         }
+
+        // === LOGIN AUTHENTICATION ===
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Credenciales: eva / 1984
+            if (username === 'eva' && password === '1984') {
+                // Login exitoso
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
+                
+                // Guardar sesión (opcional, para no tener que re-loguear)
+                sessionStorage.setItem('authenticated', 'true');
+                
+                // Cargar datos
+                loadData();
+            } else {
+                // Login fallido
+                document.getElementById('errorMessage').classList.remove('hidden');
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+            
+            return false;
+        }
+        
+        // Verificar si ya está autenticado al cargar página
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('authenticated') === 'true') {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>

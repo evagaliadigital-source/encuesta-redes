@@ -61,40 +61,8 @@ app.get('/generar-pdf', (c) => {
     return c.html('<h1>Error: Respuesta no encontrada</h1>')
   }
   
-  // Generar HTML que carga los datos y genera el PDF automáticamente
-  return c.html(`
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Generando PDF...</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</head>
-<body>
-    <h1 style="text-align: center; font-family: Arial; margin-top: 100px;">
-        Generando PDF...
-    </h1>
-    <script>
-        // Datos de la respuesta
-        const data = ${JSON.stringify(response)};
-        
-        // Esperar a que jsPDF cargue
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                generatePDF(data);
-                // Cerrar ventana después de 2 segundos
-                setTimeout(function() {
-                    window.close();
-                }, 2000);
-            }, 500);
-        });
-        
-        // COPIAR FUNCIÓN generatePDF DEL FORMULARIO AQUÍ
-        ${readFileSync('./src/index.js', 'utf8').match(/function generatePDF\(data\) \{[\s\S]*?\n        \}/)[0]}
-    </script>
-</body>
-</html>
-  `)
+  // Redirigir al formulario con parámetro para pre-llenar datos
+  return c.redirect(`/?pdf=${timestamp}`)
 })
 
 // API: Get PDF URL for a response (returns the data, frontend generates PDF)
@@ -133,11 +101,9 @@ app.post('/api/submit-survey', async (c) => {
   // Calculate priority
   const priority = calculatePriority(data)
   
-  // Check if participates in raffle (must want it AND be from A Coruña)
-  const isFromCoruna = data.p14?.toLowerCase().includes('coruña') || 
-                       data.p14?.toLowerCase().includes('coruna')
+  // Check if participates in raffle (sorteo redes - todos pueden participar)
   const wantsRaffle = data.wantRaffle === 'si'
-  const participatesInRaffle = wantsRaffle && isFromCoruna
+  const participatesInRaffle = wantsRaffle
   
   const raffleNumber = participatesInRaffle ? nextRaffleNumber++ : null
   
@@ -281,10 +247,10 @@ app.get('/', (c) => {
         <div class="max-w-3xl mx-auto mb-8">
             <div class="bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 text-center">
                 <div class="text-4xl mb-2">🎁</div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Sorteo Especial A Coruña!</h2>
-                <p class="text-gray-600 mb-1">Participa y gana 1 año de Agenda Inteligente IA</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Sorteo Especial Redes Sociales!</h2>
+                <p class="text-gray-600 mb-1">Participa desde Facebook/Instagram/LinkedIn y gana 1 año de Agenda Inteligente IA</p>
                 <p class="text-[#008080] font-bold text-lg">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
-                <p class="text-sm text-gray-500 mt-2">📅 Sorteo: 8 diciembre 2025</p>
+                <p class="text-sm text-gray-500 mt-2">📅 Sorteo: 15 diciembre 2025</p>
                 <p class="text-xs text-gray-500 mt-2">
                     <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">
                         📋 Ver bases legales del sorteo
@@ -557,12 +523,12 @@ app.get('/', (c) => {
                         <!-- P14 -->
                         <div class="mb-6">
                             <label class="block text-gray-700 font-semibold mb-3">
-                                14. ⭐ Ciudad (importante para el sorteo 🎁)
+                                14. ⭐ Ciudad
                             </label>
                             <input type="text" name="p14" required 
                                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none"
-                                   placeholder="Ej: A Coruña">
-                            <p class="text-sm text-[#008080] mt-2">💡 Si eres de A Coruña, entras automáticamente en el sorteo</p>
+                                   placeholder="Ej: Madrid">
+                            <p class="text-sm text-[#008080] mt-2">💡 Sorteo exclusivo para seguidores de Facebook/Instagram/LinkedIn</p>
                         </div>
 
                         <!-- P15 -->
@@ -572,8 +538,8 @@ app.get('/', (c) => {
                             </label>
                             <input type="text" name="p15" required
                                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none"
-                                   placeholder="Ej: A Coruña">
-                            <p class="text-sm text-[#008080] mt-2">💡 Si eres de A Coruña, entras automáticamente en el sorteo</p>
+                                   placeholder="Ej: Madrid">
+                            <p class="text-sm text-[#008080] mt-2">💡 Sorteo online - Válido para toda España</p>
                         </div>
 
                         <!-- P16 -->
@@ -664,10 +630,10 @@ app.get('/', (c) => {
                             <div class="flex items-start">
                                 <input type="checkbox" id="wantRaffle" name="wantRaffle" value="si" class="mt-1 mr-3 w-5 h-5 text-[#008080]">
                                 <label for="wantRaffle" class="cursor-pointer">
-                                    <span class="font-bold text-gray-800">🎁 Quiero participar en el sorteo de A Coruña</span>
-                                    <p class="text-sm text-gray-600 mt-1">Sorteo exclusivo: 1 año de Agenda Inteligente IA (Valor: 1.020€)</p>
+                                    <span class="font-bold text-gray-800">🎁 Quiero participar en el sorteo de Redes Sociales</span>
+                                    <p class="text-sm text-gray-600 mt-1">Sorteo online: 1 año de Agenda Inteligente IA (Valor: 1.020€)</p>
                                     <p class="text-xs text-gray-500 mt-1">
-                                        📅 Fecha: 8 diciembre 2025 • Solo peluquerías de A Coruña • 
+                                        📅 Fecha: 15 diciembre 2025 • Válido para seguidores Facebook/Instagram/LinkedIn • 
                                         <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">Ver bases legales</a>
                                     </p>
                                 </label>
@@ -683,6 +649,16 @@ app.get('/', (c) => {
                                     <p class="text-sm text-gray-600 mt-1">Análisis personalizado basado en tus respuestas con recomendaciones específicas</p>
                                 </label>
                             </div>
+                        </div>
+
+                        <!-- Campo Gestor (OPCIONAL) -->
+                        <div class="mb-6 bg-purple-50 border-2 border-purple-200 rounded-xl p-6">
+                            <label class="block text-gray-700 font-semibold mb-3">
+                                💼 ¿Tienes gestor en Galia Digital?
+                            </label>
+                            <input type="text" name="gestor" 
+                                   class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#008080] focus:outline-none"
+                                   placeholder="Nombre del gestor (opcional)">
                         </div>
 
                         <!-- Confirmación Legal (DENTRO del Bloque 4) -->
@@ -736,7 +712,7 @@ app.get('/', (c) => {
                         <div class="text-4xl mb-3">🎁</div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Participas en el Sorteo!</h3>
                         <p class="text-[#008080] font-bold text-3xl mb-2">Tu número: <span id="raffleNumberDisplay"></span></p>
-                        <p class="text-gray-600">Sorteo: 8 diciembre 2025</p>
+                        <p class="text-gray-600">Sorteo Redes: 15 diciembre 2025</p>
                         <p class="text-sm text-gray-500 mt-2">Premio: 1 año Agenda Inteligente IA (1.020€)</p>
                     </div>
                     <p class="text-gray-600 mt-6">¡Mucha suerte! 🍀</p>
@@ -747,6 +723,36 @@ app.get('/', (c) => {
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
     <script>
+        // DETECCIÓN DE PARÁMETRO ?pdf=timestamp para generar PDF desde dashboard
+        const urlParams = new URLSearchParams(window.location.search)
+        const pdfTimestamp = urlParams.get('pdf')
+        
+        if (pdfTimestamp) {
+            // Cargar datos y generar PDF automáticamente
+            loadAndGeneratePDF(pdfTimestamp)
+        }
+        
+        async function loadAndGeneratePDF(timestamp) {
+            try {
+                // Ocultar formulario, mostrar mensaje de carga
+                document.getElementById('surveyForm').innerHTML = '<div class="text-center py-12"><div class="text-4xl mb-4">📄</div><h2 class="text-2xl font-bold text-gray-800 mb-4">Generando PDF...</h2><p class="text-gray-600">Un momento por favor</p></div>'
+                
+                // Fetch datos desde backend
+                const response = await axios.get('/api/pdf/' + timestamp)
+                const data = response.data
+                
+                // Generar PDF con el código BUENO
+                generatePDF(data)
+                
+                // Mostrar mensaje de éxito
+                document.getElementById('surveyForm').innerHTML = '<div class="text-center py-12"><div class="text-4xl mb-4">✅</div><h2 class="text-2xl font-bold text-gray-800 mb-4">PDF Generado</h2><p class="text-gray-600">El PDF se está descargando...</p><button onclick="window.close()" class="mt-6 px-6 py-3 bg-[#008080] text-white rounded-lg font-bold hover:bg-[#006666]">Cerrar Ventana</button></div>'
+                
+            } catch (error) {
+                console.error('Error generando PDF:', error)
+                document.getElementById('surveyForm').innerHTML = '<div class="text-center py-12"><div class="text-4xl mb-4">❌</div><h2 class="text-2xl font-bold text-gray-800 mb-4">Error</h2><p class="text-gray-600">No se pudo generar el PDF</p><button onclick="window.close()" class="mt-6 px-6 py-3 bg-gray-500 text-white rounded-lg font-bold">Cerrar</button></div>'
+            }
+        }
+        
         let currentBlock = 1
         const totalBlocks = 4
         const totalQuestions = 18
@@ -893,6 +899,11 @@ app.get('/', (c) => {
             try {
                 const response = await axios.post('/api/submit-survey', data)
                 
+                // IMPORTANTE: Añadir raffleNumber a los datos para el PDF
+                if (response.data.raffleNumber) {
+                    data.raffleNumber = response.data.raffleNumber
+                }
+                
                 // Hide form, show success
                 document.getElementById('surveyForm').classList.add('hidden')
                 document.getElementById('successMessage').classList.remove('hidden')
@@ -905,7 +916,7 @@ app.get('/', (c) => {
                 
                 window.scrollTo({ top: 0, behavior: 'smooth' })
                 
-                // Generar y descargar PDF automaticamente
+                // Generar y descargar PDF automaticamente (ahora con raffleNumber incluido)
                 generatePDF(data)
                 
             } catch (error) {
@@ -1034,6 +1045,20 @@ app.get('/', (c) => {
             addField('Ubicacion del salon:', data.p15)
             if (data.p15_direccion) addField('Direccion completa:', data.p15_direccion)
             
+            // GESTOR
+            if (data.gestor) {
+                yPos += 3
+                drawBox(yPos - 4, 10, [243, 232, 255])
+                doc.setFontSize(10)
+                doc.setFont('helvetica', 'bold')
+                doc.setTextColor(128, 0, 128)
+                doc.text('ENCUESTA RECOGIDA POR:', margin + 3, yPos + 2)
+                doc.setFontSize(11)
+                doc.setTextColor(75, 0, 130)
+                doc.text(data.gestor, margin + 3, yPos + 7)
+                yPos += 13
+            }
+            
             yPos += 5
             
             // SECCION 2: CUALIFICACION
@@ -1101,7 +1126,7 @@ app.get('/', (c) => {
                 doc.setFontSize(11)
                 doc.setFont('helvetica', 'bold')
                 doc.setTextColor(0, 128, 0)
-                doc.text('PARTICIPA EN SORTEO - 8 diciembre 2025', margin + 3, yPos + 2)
+                doc.text('PARTICIPA EN SORTEO REDES - 15 diciembre 2025', margin + 3, yPos + 2)
                 doc.setFontSize(16)
                 doc.setTextColor(0, 100, 0)
                 doc.text('NUMERO DE SORTEO: #' + data.raffleNumber, margin + 3, yPos + 8)
@@ -1111,7 +1136,7 @@ app.get('/', (c) => {
                 doc.setFontSize(10)
                 doc.setFont('helvetica', 'bold')
                 doc.setTextColor(200, 100, 0)
-                doc.text('Quiso participar (fuera de A Coruna)', margin + 3, yPos + 2)
+                doc.text('No marco participar en sorteo', margin + 3, yPos + 2)
                 yPos += 10
             }
             
