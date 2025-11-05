@@ -636,17 +636,24 @@ app.get('/', (c) => {
 
                         <!-- Opt-ins Section -->
 
+                        <!-- Beta Program Opt-in -->
+                        <div class="mb-6 bg-gradient-to-r from-[#F3E5F5] to-[#FCE4EC] border-2 border-[#CE93D8] rounded-xl p-6">
+                            <div class="flex items-start">
+                                <input type="checkbox" id="wantBeta" name="wantBeta" value="si" class="mt-1 mr-3 w-5 h-5 text-purple-600">
+                                <label for="wantBeta" class="cursor-pointer">
+                                    <span class="font-bold text-gray-800">✨ Quiero unirme al Programa Beta VIP</span>
+                                    <p class="text-sm text-gray-600 mt-1">Prueba GALiA Digital sin coste • Condiciones VIP de por vida • Influye en el desarrollo</p>
+                                </label>
+                            </div>
+                        </div>
+
                         <!-- Sorteo Opt-in -->
                         <div class="mb-6 bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6">
                             <div class="flex items-start">
                                 <input type="checkbox" id="wantRaffle" name="wantRaffle" value="si" class="mt-1 mr-3 w-5 h-5 text-[#008080]">
                                 <label for="wantRaffle" class="cursor-pointer">
-                                    <span class="font-bold text-gray-800">🎁 Quiero participar en el sorteo de Redes Sociales</span>
-                                    <p class="text-sm text-gray-600 mt-1">Sorteo online: 1 año de Agenda Inteligente IA (Valor: 1.020€)</p>
-                                    <p class="text-xs text-gray-500 mt-1">
-                                        📅 Fecha: 15 diciembre 2025 • Válido para seguidores Facebook/Instagram/LinkedIn • 
-                                        <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">Ver bases legales</a>
-                                    </p>
+                                    <span class="font-bold text-gray-800">🎁 Quiero participar en el sorteo</span>
+                                    <p class="text-sm text-gray-600 mt-1">Participa en el sorteo por haber colaborado</p>
                                 </label>
                             </div>
                         </div>
@@ -656,8 +663,8 @@ app.get('/', (c) => {
                             <div class="flex items-start">
                                 <input type="checkbox" id="wantReport" name="wantReport" value="si" class="mt-1 mr-3 w-5 h-5 text-blue-600">
                                 <label for="wantReport" class="cursor-pointer">
-                                    <span class="font-bold text-gray-800">📊 Quiero recibir informe de mejoras para mi negocio</span>
-                                    <p class="text-sm text-gray-600 mt-1">Análisis personalizado basado en tus respuestas con recomendaciones específicas</p>
+                                    <span class="font-bold text-gray-800">📊 Quiero recibir informe personalizado</span>
+                                    <p class="text-sm text-gray-600 mt-1">Análisis basado en tus respuestas con recomendaciones específicas</p>
                                 </label>
                             </div>
                         </div>
@@ -719,23 +726,25 @@ app.get('/', (c) => {
                     <div class="text-6xl mb-4">🎉</div>
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Gracias por participar!</h2>
                     <p class="text-gray-600 mb-4">Tu respuesta ha sido registrada correctamente</p>
-                    <div id="raffleInfo" class="hidden bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 mt-6">
-                        <div class="text-5xl mb-4">✨</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">¡Bienvenida al Programa Beta VIP!</h3>
-                        
-                        <div class="bg-white rounded-lg p-4 mb-4 text-left">
-                            <p class="font-semibold text-gray-800 mb-3">Beneficios exclusivos:</p>
-                            <ul class="text-gray-700 space-y-2">
-                                <li>✅ Prueba GALiA Digital sin coste</li>
-                                <li>✅ Condiciones VIP de por vida</li>
-                                <li>✅ Influye en el desarrollo del producto</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mt-4 pt-4 border-t-2 border-[#B3D9D9]">
-                            <p class="text-gray-700 font-semibold">🎁 ¡Y además participas en el sorteo de 1 año de Agenda Inteligente IA por haber colaborado!</p>
-                        </div>
+                    
+                    <!-- Beta Program Confirmation -->
+                    <div id="betaInfo" class="hidden bg-gradient-to-r from-[#F3E5F5] to-[#FCE4EC] border-2 border-[#CE93D8] rounded-xl p-6 mt-6">
+                        <div class="text-5xl mb-3">✨</div>
+                        <h3 class="text-xl font-bold text-gray-800">¡Bienvenida al Programa Beta VIP!</h3>
                     </div>
+                    
+                    <!-- Raffle Confirmation -->
+                    <div id="raffleInfo" class="hidden bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 mt-6">
+                        <div class="text-5xl mb-3">🎁</div>
+                        <h3 class="text-xl font-bold text-gray-800">¡Participas en el sorteo por haber colaborado!</h3>
+                    </div>
+                    
+                    <!-- Report Confirmation -->
+                    <div id="reportInfo" class="hidden bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mt-6">
+                        <div class="text-5xl mb-3">📊</div>
+                        <h3 class="text-xl font-bold text-gray-800">¡Recibirás tu informe personalizado!</h3>
+                    </div>
+                    
                     <p class="text-gray-600 mt-6">¡Mucha suerte! 🍀</p>
                 </div>
             </div>
@@ -929,10 +938,19 @@ app.get('/', (c) => {
                 document.getElementById('surveyForm').classList.add('hidden')
                 document.getElementById('successMessage').classList.remove('hidden')
                 
+                // Show beta info if applicable
+                if (data.wantBeta === 'si') {
+                    document.getElementById('betaInfo').classList.remove('hidden')
+                }
+                
                 // Show raffle info if applicable
-                if (response.data.raffleNumber) {
+                if (data.wantRaffle === 'si') {
                     document.getElementById('raffleInfo').classList.remove('hidden')
-                    document.getElementById('raffleNumberDisplay').textContent = '#' + response.data.raffleNumber
+                }
+                
+                // Show report info if applicable
+                if (data.wantReport === 'si') {
+                    document.getElementById('reportInfo').classList.remove('hidden')
                 }
                 
                 window.scrollTo({ top: 0, behavior: 'smooth' })
