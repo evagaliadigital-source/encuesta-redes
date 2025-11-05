@@ -720,17 +720,21 @@ app.get('/', (c) => {
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Gracias por participar!</h2>
                     <p class="text-gray-600 mb-4">Tu respuesta ha sido registrada correctamente</p>
                     <div id="raffleInfo" class="hidden bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 mt-6">
-                        <div class="text-4xl mb-3">🎁</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Sorteo Especial Redes Sociales!</h3>
-                        <p class="text-gray-600 mb-2">Participa desde Facebook/Instagram/LinkedIn y gana 1 año de Agenda Inteligente IA</p>
-                        <p class="text-[#008080] font-bold text-3xl mb-2">Tu número: <span id="raffleNumberDisplay"></span></p>
-                        <p class="text-[#008080] font-bold text-lg mb-2">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
-                        <p class="text-gray-600">📅 Sorteo: 15 diciembre 2025</p>
-                        <p class="text-xs text-gray-500 mt-2">
-                            <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">
-                                📋 Ver bases legales del sorteo
-                            </a>
-                        </p>
+                        <div class="text-5xl mb-4">✨</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">¡Bienvenida al Programa Beta VIP!</h3>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4 text-left">
+                            <p class="font-semibold text-gray-800 mb-3">Beneficios exclusivos:</p>
+                            <ul class="text-gray-700 space-y-2">
+                                <li>✅ Prueba GALiA Digital sin coste</li>
+                                <li>✅ Condiciones VIP de por vida</li>
+                                <li>✅ Influye en el desarrollo del producto</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t-2 border-[#B3D9D9]">
+                            <p class="text-gray-700 font-semibold">🎁 ¡Y además participas en el sorteo de 1 año de Agenda Inteligente IA por haber colaborado!</p>
+                        </div>
                     </div>
                     <p class="text-gray-600 mt-6">¡Mucha suerte! 🍀</p>
                 </div>
