@@ -262,7 +262,6 @@
                     <div class="text-5xl mb-3">🎁</div>
                     <h3 class="text-3xl font-bold text-gray-800 mb-2">Sorteo Agenda Inteligente IA</h3>
                     <p class="text-gray-600">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
-                    <p class="text-sm text-gray-500 mt-2">Fecha sorteo: 8 diciembre 2025</p>
                 </div>
                 
                 <div class="bg-white rounded-lg p-6 mb-6">
@@ -1006,8 +1005,8 @@
                 doc.setFont('helvetica', 'bold')
                 doc.setTextColor(0, 128, 0)
                 const raffleText = data.raffleNumber 
-                    ? `PARTICIPA EN SORTEO - Numero ${data.raffleNumber} - 8 diciembre 2025`
-                    : 'PARTICIPA EN SORTEO - 8 diciembre 2025'
+                    ? `PARTICIPA EN SORTEO - Numero ${data.raffleNumber}`
+                    : 'PARTICIPA EN SORTEO'
                 doc.text(raffleText, margin + 3, yPos + 2)
                 yPos += 10
             }
