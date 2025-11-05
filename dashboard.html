@@ -237,6 +237,7 @@
                                 <th class="px-4 py-3 text-left cursor-pointer hover:bg-gray-200" onclick="sortTable('city')">Ciudad</th>
                                 <th class="px-4 py-3 text-left">WhatsApp</th>
                                 <th class="px-4 py-3 text-left">Email</th>
+                                <th class="px-4 py-3 text-left">💼 Gestor</th>
                                 <th class="px-4 py-3 text-left">✨ Beta</th>
                                 <th class="px-4 py-3 text-left">🎁 Sorteo</th>
                                 <th class="px-4 py-3 text-left">📊 Informe</th>
@@ -245,7 +246,7 @@
                         </thead>
                         <tbody id="responsesBody">
                             <tr>
-                                <td colspan="9" class="px-4 py-8 text-center text-gray-500">
+                                <td colspan="10" class="px-4 py-8 text-center text-gray-500">
                                     Cargando datos...
                                 </td>
                             </tr>
@@ -435,7 +436,7 @@
             document.getElementById('filteredCount').textContent = responses.length;
             
             if (responses.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="9" class="px-4 py-8 text-center text-gray-500">No hay respuestas con estos filtros.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="10" class="px-4 py-8 text-center text-gray-500">No hay respuestas con estos filtros.</td></tr>';
                 return;
             }
             
@@ -462,6 +463,9 @@
                         <a href="mailto:${r.p13}" class="text-blue-600 hover:text-blue-800">
                             ${r.p13}
                         </a>
+                    </td>
+                    <td class="px-4 py-3 text-sm ${r.gestor ? 'font-semibold text-purple-700' : 'text-gray-400'}">
+                        ${r.gestor || '-'}
                     </td>
                     <td class="px-4 py-3 text-center">
                         ${r.wantBeta === 'si' ? '<span class="text-2xl">✨</span>' : '<span class="text-gray-300">-</span>'}
