@@ -1165,7 +1165,7 @@ app.get('/', (c) => {
                 doc.setFontSize(11)
                 doc.setFont('helvetica', 'bold')
                 doc.setTextColor(0, 128, 0)
-                doc.text('PARTICIPA EN SORTEO REDES - 15 diciembre 2025', margin + 3, yPos + 2)
+                doc.text('PARTICIPA EN SORTEO REDES', margin + 3, yPos + 2)
                 doc.setFontSize(16)
                 doc.setTextColor(0, 100, 0)
                 doc.text('NUMERO DE SORTEO: #' + data.raffleNumber, margin + 3, yPos + 8)
