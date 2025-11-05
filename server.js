@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000
 
 console.log(`🚀 Servidor iniciado en puerto ${port}`)
 console.log(`📊 Dashboard Eva disponible en /dashboard`)
-console.log(`🎁 Encuesta pública disponible en /`)
+console.log(`🎁 Encuesta Redes actualizada - Value proposition banner`)
 
 serve({
   fetch: app.fetch,
