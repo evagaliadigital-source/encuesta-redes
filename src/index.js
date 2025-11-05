@@ -243,19 +243,30 @@ app.get('/', (c) => {
             </div>
         </div>
 
-        <!-- Raffle Banner -->
+        <!-- Value Proposition Banner -->
         <div class="max-w-3xl mx-auto mb-8">
-            <div class="bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 text-center">
-                <div class="text-4xl mb-2">🎁</div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Sorteo Especial Redes Sociales!</h2>
-                <p class="text-gray-600 mb-1">Participa desde Facebook/Instagram/LinkedIn y gana 1 año de Agenda Inteligente IA</p>
-                <p class="text-[#008080] font-bold text-lg">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
-                <p class="text-sm text-gray-500 mt-2">📅 Sorteo: 15 diciembre 2025</p>
-                <p class="text-xs text-gray-500 mt-2">
-                    <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">
-                        📋 Ver bases legales del sorteo
-                    </a>
-                </p>
+            <div class="bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">🎯 ¿Tu agenda tiene huecos que cuestan dinero?</h2>
+                <p class="text-gray-700 mb-4 text-center">Ayúdanos con esta encuesta de 2 minutos y recibe:</p>
+                
+                <div class="space-y-3">
+                    <div class="bg-white rounded-lg p-4">
+                        <p class="font-semibold text-gray-800 mb-2">✅ Informe personalizado gratuito</p>
+                        <p class="text-gray-600 text-sm pl-6">"Cómo recuperar +500€/mes perdidos en cancelaciones"</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-4">
+                        <p class="font-semibold text-gray-800 mb-2">✅ Invitación exclusiva al Programa Beta</p>
+                        <ul class="text-gray-600 text-sm pl-6 space-y-1">
+                            <li>• Prueba GALiA Digital sin coste</li>
+                            <li>• Conviértete en Cliente Fundador</li>
+                            <li>• Condiciones VIP de por vida</li>
+                            <li>• Influye en el desarrollo del producto</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p class="text-center text-sm text-gray-500 mt-4">⏱️ Solo 2-3 minutos • 100% confidencial</p>
             </div>
         </div>
 
@@ -710,10 +721,16 @@ app.get('/', (c) => {
                     <p class="text-gray-600 mb-4">Tu respuesta ha sido registrada correctamente</p>
                     <div id="raffleInfo" class="hidden bg-gradient-to-r from-[#E6F2F2] to-[#EBF5F5] border-2 border-[#B3D9D9] rounded-xl p-6 mt-6">
                         <div class="text-4xl mb-3">🎁</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Participas en el Sorteo!</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Sorteo Especial Redes Sociales!</h3>
+                        <p class="text-gray-600 mb-2">Participa desde Facebook/Instagram/LinkedIn y gana 1 año de Agenda Inteligente IA</p>
                         <p class="text-[#008080] font-bold text-3xl mb-2">Tu número: <span id="raffleNumberDisplay"></span></p>
-                        <p class="text-gray-600">Sorteo Redes: 15 diciembre 2025</p>
-                        <p class="text-sm text-gray-500 mt-2">Premio: 1 año Agenda Inteligente IA (1.020€)</p>
+                        <p class="text-[#008080] font-bold text-lg mb-2">Valor: 1.020€ (300€ setup + 720€ servicio anual)</p>
+                        <p class="text-gray-600">📅 Sorteo: 15 diciembre 2025</p>
+                        <p class="text-xs text-gray-500 mt-2">
+                            <a href="https://galiadigital.es/sorteo/" target="_blank" class="text-[#008080] underline hover:text-[#006666]">
+                                📋 Ver bases legales del sorteo
+                            </a>
+                        </p>
                     </div>
                     <p class="text-gray-600 mt-6">¡Mucha suerte! 🍀</p>
                 </div>
